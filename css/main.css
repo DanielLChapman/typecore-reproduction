@@ -1,0 +1,92 @@
+/* universal */
+
+/* Nav Bar */
+
+nav {
+  height: 55px;
+  width: 100%;
+  background: rgb(230, 67, 56);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+#nav-bar-list {
+  list-style: none;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1.5;
+  display: inline-block;
+}
+
+#nav-bar-list ul,
+#nav-bar-list li {
+  float: left;
+  height: 57px;
+  position: relative;
+  list-style: none;
+}
+
+#nav-bar-list ul {
+  margin-top: -19px;
+  font-size: 12px;
+  width: 85px;
+  left: -40px;
+  margin-right: -10px;
+  line-height: 5;
+}
+
+#nav-bar-list ul li:nth-child(n+2) {
+  display: none;
+  border-bottom: 1px solid grey;
+  font-size: 13px;
+  left: -40px;
+  padding-left: 10px;
+  float: none;
+  z-index: 3;
+  width: 205px;
+  margin-top: 57px;
+  margin-bottom: -57px;
+  text-align: left;
+  background: rgb(206, 60, 50);
+}
+
+#nav-bar-list ul li:first-child {
+  width: 75px;
+  text-align: center;
+  left: -20px;
+}
+
+#nav-bar-list ul:hover {
+  background: rgb(206, 60, 50);
+}
+
+/* Title Nav */
+#section-title {
+  width: 100%;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  z-index: 2;
+  font-weight: 400;
+  height: 100px;
+  background-color: rgb(46, 46, 46);
+}
+
+#section-title h1 {
+  display: inline-block;
+  position: relative;
+  left: 30px;
+  font-weight: 900;
+  font-size: 49px;
+  top: -20px;
+  letter-spacing: -1;
+}
+
+#section-title h4 {
+  font-style: italic;
+  letter-spacing: 1.4;
+  font-size: 14px;
+  display: inline-block;
+  position: relative;
+  left: 40px;
+  top: -30px;
+}
