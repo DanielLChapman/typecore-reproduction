@@ -42,7 +42,7 @@ nav {
   left: -40px;
   padding-left: 10px;
   float: none;
-  z-index: 3;
+  z-index: 5;
   width: 205px;
   margin-top: 57px;
   margin-bottom: -57px;
@@ -65,7 +65,7 @@ nav {
   width: 100%;
   color: white;
   font-family: 'Roboto', sans-serif;
-  z-index: 2;
+  z-index: 4;
   font-weight: 400;
   height: 100px;
   background-color: rgb(46, 46, 46);
@@ -90,3 +90,42 @@ nav {
   left: 40px;
   top: -30px;
 }
+
+/* Left-Social-Column */
+#page-content {
+        height: 100%;
+        top: -16px;
+        position: relative;
+      }
+      #left-social {
+        position: relative;
+        height: 100%;
+        box-shadow: 2px 0 5px -2px #000;
+        z-index:1;
+        width: 75px;
+        background: rgb(46,46,46);
+      }
+      #left-social-list {
+        list-style: none;
+        position: relative;    
+        left: -42px;
+      }
+      #left-social-list li {
+        font-size: 28px;
+        color: darkgray;
+        height: 70px;
+        width: 75px;
+      }
+      #left-social-list li:active {
+        color: dimgray;
+      }
+      #left-social-list li:hover {
+        background-color: slategray;
+        border-left: 5px solid rgb(230, 67, 56);
+        width: 71px;
+      }
+      #left-social-list li i {
+        position: relative;
+        top: 19px;
+        left: 24.5px;
+      }
