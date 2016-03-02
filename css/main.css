@@ -1,5 +1,10 @@
 /* universal */
-
+html, body {
+            height: 100%;
+            margin: 0 auto;
+            overflow-x: none;
+            
+        }
 /* Nav Bar */
 
 nav {
@@ -93,15 +98,19 @@ nav {
 
 /* Left-Social-Column */
 #page-content {
-        height: 100%;
-        top: -16px;
+  height: 100%;
+
         position: relative;
+  width: 100%;
       }
       #left-social {
         position: relative;
         height: 100%;
-        box-shadow: 2px 0 5px -2px #000;
+        min-height: 100%;
+        display: inline-block;
+        margin-right: -5px;
         z-index:1;
+        vertical-align: top;
         width: 75px;
         background: rgb(46,46,46);
       }
@@ -109,6 +118,7 @@ nav {
         list-style: none;
         position: relative;    
         left: -42px;
+        top: -16.2px;
       }
       #left-social-list li {
         font-size: 28px;
@@ -128,4 +138,90 @@ nav {
         position: relative;
         top: 19px;
         left: 24.5px;
+      }
+
+/* Left Recent Column */
+#left-recent {
+        position: relative;
+        height: 100%;
+        z-index:2;
+  min-height: 100%;
+        margin-right: -5px;
+        width: 340px;
+        vertical-align: top;
+        border: 1px solid rgb(31,35,40);
+        display: inline-block;
+        background: rgb(50,55,60);
+      }
+      #left-recent-top {
+        height: 95px;
+        border-bottom: 2px solid rgb(46,46,46);
+        position: relative;
+      }
+      #left-recent h3, #middle-content h3 {
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 1.4;
+        left: 7%;
+        font-size: 13px;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 100;
+        top: 25px;
+        display: inline-block;
+        position: relative;
+      }
+      #left-recent-tab {
+        width: 100%;
+        height: 70px;
+        background: rgb(46,46,46);
+        position: relative;
+        top: -5px;
+      }
+      #left-recent-tab ul {
+        list-style: none;
+        position: relative;
+        top: 15px;
+        left: 5px;
+      }
+      #left-recent-tab ul li {
+        float: left;
+        font-size: 23px;
+        width: 70px;
+        height: 55px;
+        margin-right: 10px;
+        color: lightgray;
+      }
+      #left-recent-tab ul li:hover, #left-social-list li:hover {
+        cursor: pointer;
+      }
+      #left-recent-tab ul .active {
+        background-color: rgb(50,55,60);
+        border-top: 2px solid rgb(230, 67, 56);
+        height: 53px;
+      }
+      #left-recent-tab ul li i {
+        position: relative;
+        top: 30%;
+        left: 25px;
+      }
+      #left-recent-tab-display {
+        width: 80%;
+        height: auto;
+        min-height: 200px;
+        border-bottom:1px solid rgb(46,46,46);
+        position: relative;
+        left: 10%;
+        
+      }
+      #left-recent-categories {
+        border-bottom: 2px solid rgb(46,46,46);
+        height: 85px;
+      }
+      #left-recent-categories-div {
+        width: 80%;
+        position: relative;
+        height: auto;
+        min-height: 150px;
+        border-bottom: 2px solid rgb(46,46,46);
+        left: 10%;
       }
