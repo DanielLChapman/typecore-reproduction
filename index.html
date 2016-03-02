@@ -3,12 +3,31 @@
     <header>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto:400,900,400italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,900,400italic,100' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </header>
     <script>
+        var throttle = false;
+        function resetThrottle() {
+          throttle = false;
+          var height = $("#middle-content").height();
+          $("#left-recent").css("height", height);
+          $("#left-social").css("height", height);
+        }
+        $(window).resize(function() {
+          if (!throttle) {
+            var height = $("#middle-content").height();
+            $("#left-recent").css("height", height);
+            $("#left-social").css("height", height);
+            throttle = true;
+          }
+          setTimeout(resetThrottle, 250);
+        });
         $(document).ready(function() {
+            var height = $("#middle-content").height();
+            $("#left-recent").css("height", height+18);
+            $("#left-social").css("height", height+20);
             $(".has-drop-down").on("mouseenter", function() {
                 $(this).children().show("slow");
                 $(this).children().css("display", "list-item");
@@ -16,6 +35,22 @@
             $(".has-drop-down").on("mouseleave", function() {
                 $("#nav-bar-list ul li:nth-child(n+2)").hide(500);
                 $("#nav-bar-list ul li:nth-child(n+2)").css("display", "none");
+            });
+            $("#left-recent-tab ul li").on("click", function() {
+              $("#left-recent-tab ul .active").removeClass("active");
+              $(this).addClass("active");
+            });
+            $("#middle-content-gallery ul li").on("click", function() {
+              $("#middle-content-gallery ul .active").removeClass("active");
+            $(this).addClass("active");
+            });
+            $("#gallery-images").on("mouseenter", function() {
+              var height = $("#gallery-images").height() - 58;
+              $("#overlay").css("height", height).hide();
+              $("#overlay").stop().fadeIn();
+            });
+            $("#overlay").on("mouseleave", function() {
+              $("#overlay").stop().fadeOut();
             });
         });
     </script> 
@@ -65,15 +100,144 @@
             <li><i class="fa fa-share-alt"></i></li>
           </ul>
         </div>
+        <div id="left-recent">
+          <div id="left-recent-top">
+          <h3>Recent</h3></div>
+          <div id="left-recent-tab">
+            <ul>
+              <li class="active" ><i class="fa fa-clock-o"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-comment"></i></li>
+            </ul>
+          </div>
+          <div id="left-recent-tab-display">
+          </div>
+          <div id="left-recent-categories">
+            <h3>Categories</h3>
+          </div>
+          <div id="left-recent-categories-div">   
+          </div>
+        </div>
+        <div id="middle-content">
+          <div id="middle-content-title">
+            <h3><span style="color: rgb(46,46,46);">Featured.</span> Whats new?</h3>
+          </div>
+          <div id="middle-content-gallery">
+            <div id="overlay"></div>
+            <ul>
+              <li class="active" ><i class="fa fa-circle"></i></li>
+              <li><i class="fa fa-circle"></i></li>
+              <li><i class="fa fa-circle"></i></li>
+            </ul>
+            <div id="fa-arrows">
+              <i class="left-move fa fa-angle-left"></i>
+              <i class="right-move fa fa-angle-right"></i>
+            </div>
+            <img id="gallery-images" src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-720x340.jpg">
+            <h2>Things To Do When a Cold Winter Approaches</h2>
+          </div>
+          <div id="middle-articles"></div>
+        </div>
       </section>
     </body>
     <style>
-      html, body {
-            height: 100%;
-            margin: 0 auto;
-            overflow-x: none;
-        }
-      
-      
+      #middle-content {
+        background-color: gainsboro;
+        width: 52.9%;
+        max-width: 785px;
+        height: auto;
+        min-height: 100%;
+        vertical-align: top;
+        display: inline-block;
+        position: relative;
+      }
+      #middle-content-title {
+        height: 95px;
+        width: 100%;
+        border-bottom: 1px solid rgb(246,246,246);
+      }
+      #middle-content-title h3 {
+        font-weight: 400;
+        font-size: 14px;
+        position: relative;
+        top: 24px;
+      }
+      #middle-content-gallery {
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: auto;
+        min-height: 300px;
+      }
+      #middle-content-gallery ul {
+        list-style: none;
+      }
+      #middle-content-gallery ul li{
+        float: left;
+        font-size: 10px;
+        margin-right: 5px;
+        position: relative;
+        left: 43%;
+        color: lightgray;
+        text-shadow:0 0 1px #000;
+      }
+      #middle-content-gallery ul .active {
+        color: rgb(230, 67, 56);
+      }
+      #gallery-images {
+        position: relative;
+        box-shadow: 0 0 1px #000;
+        cursor: pointer;
+        top: 25px;
+        width: 100%;
+        height: auto;
+      }
+      #overlay {
+        width: 42vw;
+        max-width: 100%;
+        z-index: 2;
+        top: 37px;
+        position: absolute;
+        background: rgba(46,46,46,.8);
+      }
+      #middle-content-gallery h2 {
+        position: relative;
+        top: -51px;
+        border-top: 1px solid black;
+        height: 58px;
+        line-height: 3.5;
+        font-size: 16px;
+        padding-left:20px;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        letter-spacing: 1px;
+        background: rgba(46,46,46,0.8);
+      }
+      #fa-arrows {
+        position: absolute;
+        top: 40px;
+        z-index:3;
+        font-size: 40px;
+        right: 1%;
+      }
+      #fa-arrows i {
+        margin-right: 2px;
+        width: 20px;
+        border:1px solid black;
+        padding-left: 15px;
+        color: white;
+        cursor: pointer;
+        width: 30px;
+        background-color: rgba(46,46,46, 0.9);
+        border-radius: 5px;
+      }
+      #middle-articles {
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 155px;
+        border-bottom: 1px solid rgb(46,46,46);
+      }
     </style>
 </html>
