@@ -10,12 +10,16 @@
     </header>
     <script>
         var throttle = false;
+        var moreScroll = 1100;
         function resetThrottle() {
           throttle = false;
           var height = $("#middle-content").height();
-          $("#left-recent").css("height", height);
-          $("#left-social").css("height", height);
+          $("#left-recent").css("height", height+30);
+          $("#left-social").css("height", height+30);
         }
+        $( window ).load(function() {
+            updateFunction();
+        });
         $(window).resize(function() {
           if (!throttle) {
             updateFunction();
@@ -29,8 +33,8 @@
           $("#middle-content-gallery h2").css("width", height2-20);
           
           var height = $("#middle-content").height();
-          $("#left-recent").css("height", height);
-          $("#left-social").css("height", height);
+          $("#left-recent").css("height", height+30);
+          $("#left-social").css("height", height+30);
         }
         $(document).ready(function() {
             updateFunction();
@@ -60,6 +64,15 @@
             });
             $("#overlay").on("mouseleave", function() {
               $("#overlay").stop().fadeOut();
+            });
+            $("#scroll-container").scroll(function() {
+              var x = document.getElementById("scroll-container");
+              if (x.scrollTop > moreScroll) {
+                var nhtml = $("#scroll-container").html();
+                var nhtml = nhtml + nhtml;
+                $("#scroll-container").html(nhtml);
+                moreScroll = 1000000;
+              }
             });
         });
     </script> 
@@ -172,83 +185,147 @@
               
             </ul>
           </div>
+          <div id="middle-end-articles">
+            <div id="scroll-container">
+              <ul>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+                <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="middle-end-feature">
+            <div>
+              <h5>Recent Posts</h5>
+                <ul>
+                  <li><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</li>
+                  <li><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton Maryton Ashton</li>
+                  <li><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</li>
+                </ul> 
+            </div>
+            <div>
+              <h5>Recent Comments</h5>
+                <ul>
+                  <li><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</li>
+                  <li><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</li>
+                  <li><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</li>
+                </ul> 
+            </div>
+            <br class="clear" />
+          </div>
+          <div id="middle-end">
+            <h4><i class="fa fa-folder-open"></i> EDITOR PICKS</h4>
+            <div>
+              <div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-160x160.jpg">
+                <h4>Things To Do When a Cold Winter Approaches</h4>
+                <h5>25 OCT, 2014</h5>
+              </div>
+              <div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-160x160.jpg">
+                <h4>Things To Do When a Cold Winter Approaches</h4>
+                <h5>25 OCT, 2014</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="right-content">
+          <div id="right-top">
+            <h3>Whats Hot?</h3>
+          </div>
         </div>
       </section>
     </body>
     <style>
-      #middle-features {
-        position: relative;
-        top: -50px;
-        width: 100%;
-        height: 230px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid rgba(255,255,255,.7);
-      }
-      #middle-features ul {
-        list-style: none;
-      }
-      #middle-features ul li {
-        height: 90px;
+      
+      
+      #right-content {
+        z-index: 20;
+        height: 100%;
+        left: -5px;
+        min-width: 200px;
+        padding-right:10px;
         display: inline-block;
-        width: 42%;
-        cursor: pointer;
-        right: 5%;
-        position: relative;
-        float: right;
-        border-bottom: 1px solid rgba(255,255,255,.4);
-        padding-bottom: 20px;
-      }
-      #middle-features ul li:nth-child(1), #middle-features ul li:nth-child(3) {
-        float: left;
-        right: 0;
-      }
-      #middle-features ul li:nth-child(3), #middle-features ul li:nth-child(4) {
-        padding-top: 10px;
-      }
-      #middle-features ul li img {
-        width: 25%;
-        height: 85px;
-        float: left;
-        top: 2.5px;
-        border-radius: 5px;
-        box-shadow: 0 0 2px #fff;
         position: relative;
       }
-      #middle-features ul li h3, #middle-features ul li h4, #middle-features ul li h5{
-        float: left;
-        position: relative;
+      #right-top {
+        height: 95px;
+        width: 100%;
+        border-bottom: 2px solid rgb(46,46,46);
       }
-      #middle-features ul li h3 {
-        color: lightslategray;
-        left: 30%;
-        width: 65%;
-        font-size: 11px;
-        position: relative;
-        top: -60px;
-      }
-      #middle-features ul li h4 {
-        left: 5%;
-        font-family: 'Roboto', sans-serif;
+      #right-top h3 {
+        color: gray;
         font-weight: 400;
-        letter-spacing: 0.3px;
-        font-size: 13px;
-        top: -10px;
-      }
-      #middle-features ul li h5 {
-        left: 5%;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        width: 68%;
-        top: -40px;
-      }
-      @media all and (max-width: 1421px) {
-        #middle-features ul li h5 {
-          left: 5%;
-          top: -45px;
-        }
-        #middle-features ul li h3 {
-          top: -70px;
-        }
+        letter-spacing: 1px;
       }
     </style>
 </html>
