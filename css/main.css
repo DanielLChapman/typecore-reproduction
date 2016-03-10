@@ -211,12 +211,11 @@ nav {
         left: 25px;
       }
       #left-recent-tab-display {
-        width: 80%;
+        width: 100%;
         height: auto;
-        min-height: 200px;
+        min-height: 300px;
         border-bottom:1px solid rgb(46,46,46);
         position: relative;
-        left: 10%;
         
       }
       #left-recent-categories {
@@ -230,6 +229,53 @@ nav {
         min-height: 150px;
         border-bottom: 2px solid rgb(46,46,46);
         left: 10%;
+      }
+      
+      #left-recent-tab-display ul {
+        list-style: none;
+      }
+      #left-recent-tab-display ul li{
+        width: 100%;
+        position: relative;
+        left: -20px;
+        height: 100px;
+        border-bottom: 1px solid rgba(4,6,6,.3);
+      }
+      #left-recent-tab-display ul li img {
+        width: 80px;
+      }
+      #left-recent-tab-display ul li h4 {
+        position: relative;
+        top: -100px;
+        font-size: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        left: 90px;
+        width: 90%;
+        color: darkgray;
+      }
+      #left-recent-tab-display ul li h5 {
+        position: relative;
+        top: -115px;
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        left: 90px;
+        width: 75%;
+        color: lightgray;
+      }
+      #left-recent-tab-display ul li h3 {
+        position: relative;
+        top: -145px;
+        font-size: 12px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        left: 90px;
+        width: 75%;
+        color: lightslategrey;
+      }
+      .star, .comment {
+        display: none;
       }
 
 
@@ -686,4 +732,103 @@ nav {
         position: relative;
         padding-bottom: 20px;
         border-bottom: 1px solid rgb(206,206,206);
+      }
+
+      #bottom-content {
+        width: 100%;
+        position: absolute;
+        min-height: 500px;
+        z-index: 12;
+        background: rgb(50,55,60);
+        float: left;
+      }
+      .ul-bottom-content {
+        width: 30%;
+        height: 440px;
+        position: relative;
+        display: inline-block;
+      }
+      .ul-bottom-content h3 {
+        color: lightgrey;
+        font-family: 'Roboto', sans-serif;
+        width: 75%;
+        font-weight: 400;
+        font-size: 15px;
+        padding: 20px;
+        left: 20px;
+        position: relative;
+        text-transform: uppercase;
+        border-bottom: 2px solid rgb(46,46,46);
+        border-radius: 1px;
+      }
+      #bottom-content div li {
+        height: 100px;
+        width: inherit;
+        border-bottom: 1px solid rgba(46,46,46,.9);
+        padding-bottom: 20px;
+        left: -10px;
+        position: relative;
+      }
+      #bottom-content div ul li:nth-child(n+2) {
+        padding-top: 10px;
+      }
+      #bottom-content div li img {
+        height: 90px;
+        top: 10px;
+        position: relative;
+        border-radius: 7px;
+      }
+      #bottom-content div li h4, #bottom-content div li h5, #bottom-content div li h3 {
+        position: relative;
+        top: -100px;
+        font-size: 13px;
+        left: 100px;
+        font-family: 'Roboto', sans-serif;
+        width: 75%;
+        font-weight: 400;
+        letter-spacing: -.2px;
+      }
+      #bottom-content div li h5 {
+        top: -110px;
+        color: whitesmoke;
+        font-weight: 300;
+        letter-spacing: .2px;
+      }
+      #bottom-content div li h3 {
+        top: -120px;
+        border-bottom: 0px solid blue;
+        color: lightsteelblue;
+        font-weight: 300;
+        left: 80px;
+      }
+/* footer */
+
+      #footer {
+        height: 200px;
+        padding-top: 10px;
+        position: relative;
+        overflow-x: hidden;
+        background: rgb(226, 70, 60);
+      }
+      #footer h1 {
+        color: white;
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: -.5px;
+        top: -10px;
+        left: 50px;
+        font-size: 42px;
+      }
+      #footer h3 {
+        width: 60%;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        color: rgba(246,246,246,.5);
+        left: 50px;
+        position: relative;
+      }
+      #footer a {
+        text-decoration: none;
+        cursor: pointer;
+        color: rgba(146,246,246,.5);
       }
