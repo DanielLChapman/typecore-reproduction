@@ -56,7 +56,7 @@
             });
             $("#middle-content-gallery ul li").on("click", function() {
               $("#middle-content-gallery ul .active").removeClass("active");
-            $(this).addClass("active");
+              $(this).addClass("active");
             });
             $("#gallery-images").on("mouseenter", function() {
               var height = $("#gallery-images").height() - 58;
@@ -128,13 +128,76 @@
           <h3>Recent</h3></div>
           <div id="left-recent-tab">
             <ul>
-              <li class="active" ><i class="fa fa-clock-o"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-comment"></i></li>
+              <li class="active" ><i class="fa fa-clock-o clock-button" onclick="updateDisplay('clock')"></i></li>
+              <li><i class="fa fa-star star-button" onclick="updateDisplay('star')"></i></li>
+              <li><i class="fa fa-comment comment-button" onclick="updateDisplay('comment')"></i></li>
             </ul>
           </div>
+          <script>
+            function updateDisplay(elem) {
+              $('.clock').hide();
+              $('.star').hide();
+              $('.comment').hide();
+              $('.'+elem).show();
+            }
+          </script>
           <div id="left-recent-tab-display">
+            <ul class="clock">
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+            </ul>
+            <ul class="star">
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></li>
+              <br class="clear" />
+            </ul>
+            <ul class="comment">
+              <li><div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g"><h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4><h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
+                </div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4><h5 style="font-weight: 300;">You really went all crazy out there</h5>
+                </div></li>
+              <br class="clear" />
+              <li><div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g"><h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4><h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
+                </div></li>
+              <br class="clear" />
+              <li><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg"><h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4><h5 style="font-weight: 300;">You really went all crazy out there</h5>
+                </div></li>
+              <br class="clear" />
+            </ul>
           </div>
+          <br class="clear" />
           <div id="left-recent-categories">
             <h3>Categories</h3>
           </div>
@@ -360,78 +423,15 @@
             </ul>
         </div>
         <br class="clear" />
+        <section id="footer">
+          <h1>TYPECORE<span style="rgb(66,46,46); margin-left: -1px">.</span></h1>
+          <h3>All rights to <a href="http://demo.alxmedia.se/x/?theme=Typecore">Alx media</a>, just wanted to have fun building the page.</h3>
+        </section>
       </section>
       <br class="clear" />
     </body>
     <style>
       
-      #bottom-content {
-        width: 100%;
-        position: absolute;
-        min-height: 500px;
-        z-index: 20;
-        background: rgb(50,55,60);
-        float: left;
-      }
-      .ul-bottom-content {
-        width: 30%;
-        height: 440px;
-        position: relative;
-        display: inline-block;
-      }
-      .ul-bottom-content h3 {
-        color: lightgrey;
-        font-family: 'Roboto', sans-serif;
-        width: 75%;
-        font-weight: 400;
-        font-size: 15px;
-        padding: 20px;
-        left: 20px;
-        position: relative;
-        text-transform: uppercase;
-        border-bottom: 2px solid rgb(46,46,46);
-        border-radius: 1px;
-      }
-      #bottom-content div li {
-        height: 100px;
-        width: inherit;
-        border-bottom: 1px solid rgba(46,46,46,.9);
-        padding-bottom: 20px;
-        left: -10px;
-        position: relative;
-      }
-      #bottom-content div ul li:nth-child(n+2) {
-        padding-top: 10px;
-      }
-      #bottom-content div li img {
-        height: 90px;
-        top: 10px;
-        position: relative;
-        border-radius: 7px;
-      }
-      #bottom-content div li h4, #bottom-content div li h5, #bottom-content div li h3 {
-        position: relative;
-        top: -100px;
-        font-size: 13px;
-        left: 100px;
-        font-family: 'Roboto', sans-serif;
-        width: 75%;
-        font-weight: 400;
-        letter-spacing: -.2px;
-      }
-      #bottom-content div li h5 {
-        top: -110px;
-        color: whitesmoke;
-        font-weight: 300;
-        letter-spacing: .2px;
-      }
-      #bottom-content div li h3 {
-        top: -120px;
-        border-bottom: 0px solid blue;
-        color: lightsteelblue;
-        font-weight: 300;
-        left: 80px;
-      }
       @media screen and (min-width: 1497px) {
         #right-content {
           left: 1200px;
