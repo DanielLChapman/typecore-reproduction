@@ -10,6 +10,7 @@
     </header>
     <script>
         var throttle = false;
+        var rightMobile = leftMobile = false;
         var moreScroll = 1100;
         function resetThrottle() {
           throttle = false;
@@ -25,17 +26,107 @@
             updateFunction();
             throttle = true;
           }
-          setTimeout(resetThrottle, 250);
+          setTimeout(resetThrottle, 150);
         });
       
+        function correctRight() {
+            $('#right-content').hide();
+            $('#right-mobile-button').css("min-width", "57px");
+            $('#right-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+            $('#right-mobile-button i').css("left", "12px");
+            rightMobile = false;
+        }
+        function correctLeft() {
+            $('#left-recent').hide();
+            $('#left-mobile-button').css("min-width", "57px");
+            $('#left-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+            $('#left-mobile-button i').css("left", "12px");
+            leftMobile = false;
+        }
+        var tempWidth = $(document).width();
+        function correctMiddle() {
+            
+            $("#overlay").css("width", tempWidth);
+            $("#overlay").css("max-width", tempWidth + 10);
+            $('#middle-content').css("width", tempWidth);
+            $('#middle-content').css("max-width", tempWidth + 10);
+            correctRight(); 
+            correctLeft();
+        }
         function updateFunction() {
-          var height2 = $("#gallery-images").width();
+           var height2 = $("#gallery-images").width();
           $("#middle-content-gallery h2").css("width", height2-20);
           
           var height = $("#middle-content").height();
           $("#left-recent").css("height", height+30);
           $("#left-social").css("height", height+30);
           $("#bottom-content").css("top", height+155);
+          
+          var dWidth = $(document).width();
+          tempWidth = dWidth;
+          if (dWidth > 1290) {
+            $('#middle-content').css("width", "52.9%");
+            $('#middle-content').css("max-width", "785px");
+            $('#right-content').show();
+            $('#left-recent').show();
+          }
+          if (dWidth <= 986) {
+            tempWidth = tempWidth - 60 - 57;
+            correctMiddle();
+             $("#bottom-content").css("top", height+205);
+          }
+          else if (dWidth <= 1090 && dWidth > 986) {
+            tempWidth = tempWidth - 340 - 60;
+            correctMiddle();
+            $('#left-recent').show();
+            $("#bottom-content").css("top", height+205);
+          }
+          else if (dWidth <= 1290 && dWidth > 1090) {
+            tempWidth = tempWidth - 340 - 75 - 60;
+            correctMiddle();
+            $('#left-recent').show();
+          }
+          
+          
+         
+          
+        }
+        function openRightMobile() {
+        
+          if (!rightMobile) {
+            rightMobile = true;
+            $( "#right-mobile-button" ).animate({
+              minWidth: "260px"
+            }, 400, function() {
+            });
+            $('#right-content').show("slow");
+            $('#right-content').css("top", "0");
+            $('#right-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+            $('#right-mobile-button i').css("left", "115px");
+          }
+          
+          else {
+            correctRight(); 
+          }
+            
+        }
+      function openLeftMobile() {
+        
+          if (!leftMobile) {
+            leftMobile = true;
+            $( "#left-mobile-button" ).animate({
+              minWidth: "340px"
+            }, 400, function() {
+            });
+            $('#left-recent').show("slow");
+            $('#left-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+            $('#left-mobile-button i').css("left", "155px");
+          }
+          
+          else {
+            correctLeft(); 
+          }
+            
         }
         $(document).ready(function() {
             updateFunction();
@@ -61,6 +152,7 @@
             $("#gallery-images").on("mouseenter", function() {
               var height = $("#gallery-images").height() - 58;
               $("#overlay").css("height", height).hide();
+              $("#overlay").css("width", $("#gallery-images").width());
               $("#overlay").stop().fadeIn();
             });
             $("#overlay").on("mouseleave", function() {
@@ -111,6 +203,14 @@
         </nav>
 						<section id="section-title">
 								    <h1>TYPECORE<span style="rgb(46,46,46); margin-left: -1px">.</span></h1><h4>A Rock solid theme.</h4>
+            <ul id="top-social-list">
+              <li><i class="fa fa-home"></i></li>
+              <li><i class="fa fa-twitter"></i></li>
+              <li><i class="fa fa-facebook"></i></li>
+              <li><i class="fa fa-google"></i></li>
+              <li><i class="fa fa-rss"></i></li>
+              <li><i class="fa fa-share-alt"></i></li>
+          </ul>
 								</section>
       <section id="page-content">
         <div id="left-social">
@@ -394,6 +494,12 @@
           </div>
         </div>
       </section>
+      <div id="right-mobile-button" onclick="openRightMobile();">
+        <i class="fa fa-angle-double-left"></i>
+      </div>
+      <div id="left-mobile-button" onclick="openLeftMobile();">
+        <i class="fa fa-angle-double-right"></i>
+      </div>
       <section id="bottom-content">
         <div class="ul-bottom-content">
           <h3>In Mixed</h3>
@@ -431,7 +537,38 @@
       <br class="clear" />
     </body>
     <style>
-      
+      #right-mobile-button {
+        position: absolute;
+        top: 155px;
+        right: 0px;
+        z-index: 25;
+        width: 57px;
+        height: 95px;
+        background: rgb(230, 67, 56);
+        display: none;
+      }
+      #left-mobile-button {
+        position: absolute;
+        top: 210px;
+        left: 0px;
+        z-index: 25;
+        width: 57px;
+        height: 95px;
+        background: rgb(230, 67, 56);
+        display: none;
+      }
+      #right-mobile-button i, #left-mobile-button i {
+        color: white;
+        font-size: 52px;
+        position: relative;
+        width: 33px;
+        left: 12px;
+        top: 18px;
+        cursor: pointer;
+      }
+      #top-social-list {
+        display: none;
+      }
       @media screen and (min-width: 1497px) {
         #right-content {
           left: 1200px;
@@ -440,7 +577,79 @@
       @media screen and (max-width: 1290px) {
         #right-content {
           right: 0;
+          padding-top: 95px;
           display: none;
+        }
+        html, body  {
+          background-color: gainsboro;
+        }
+        #overlay {
+          max-width: 1000px;
+        }
+        #right-mobile-button {
+          display: block;
+        }
+      }
+      @media screen and (max-width: 1090px) { 
+        #section-title {
+          height: 155px;
+        }
+        #left-social {
+          display: none;
+        }
+        #top-social-list {
+          display: block;
+          position: relative;
+          list-style: none;
+          top: -60px;
+          border-top:1px solid rgba(206,206,206,.2);
+        }
+        #top-social-list li {
+          display: inline-block;
+          font-size: 28px;
+          color: lightgrey;
+          padding-right: 20px;
+          height: 60px;
+          position: relative;
+          left: -25px;
+          width: 30px;
+        }
+        #top-social-list li i {
+          position: relative;
+          left: 15px;
+          top: 15px;
+        }
+        #top-social-list li:hover {
+          border-top: 2px solid rgb(230, 67, 56);
+          background-color: rgb(50,55,60);
+          cursor: pointer;
+        }
+        #top-social-list li:hover i{
+          top: 13px;
+        }
+        #right-mobile-button {
+          top: 210px;
+        }
+      }
+      @media screen and (max-width: 986px) {
+        #left-recent {
+          position: absolute;
+          z-index:22;
+          top: 95px;
+          display: none;
+        }
+        #left-mobile-button {
+          display: block;
+        }
+        #middle-content {
+          left: 57px;
+          border-left: 1px solid rgba(206,206,206,.9);
+        }
+        #middle-articles {
+          height: 18vw;
+        }
+        #middle-articles ul li img{ 
+          height: 10vw;
         }
       }
     </style>
