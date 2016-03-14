@@ -60,9 +60,14 @@
             $("#overlay").css("max-width", tempWidth + 10);
             $('#middle-content').css("width", tempWidth);
             $('#middle-content').css("max-width", tempWidth + 10);
-            correctRight(); 
-            correctLeft();
+            if (Math.abs(oldWidth-tempWidth) > 5) {
+              correctRight(); 
+              correctLeft();
+            }
+          oldWidth = tempWidth;
+            
         }
+        var oldWidth = tempWidth();
         function updateFunction() {
           var height2 = $("#gallery-images").width();
           $("#middle-content-gallery h2").css("width", height2-20);
