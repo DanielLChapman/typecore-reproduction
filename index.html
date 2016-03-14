@@ -31,14 +31,24 @@
       
         function correctRight() {
             $('#right-content').hide();
-            $('#right-mobile-button').css("min-width", "57px");
+          if ($(document).width() <= 702) {
+              $('#right-mobile-button').css("width", "40px");
+            }
+            else {
+              $('#right-mobile-button').css("width", "57px");
+            }
             $('#right-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
             $('#right-mobile-button i').css("left", "12px");
             rightMobile = false;
         }
         function correctLeft() {
             $('#left-recent').hide();
-            $('#left-mobile-button').css("min-width", "57px");
+            if ($(document).width() <= 702) {
+              $('#left-mobile-button').css("width", "40px");
+            }
+            else {
+              $('#left-mobile-button').css("width", "57px");
+            }
             $('#left-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
             $('#left-mobile-button i').css("left", "12px");
             leftMobile = false;
@@ -54,13 +64,19 @@
             correctLeft();
         }
         function updateFunction() {
-           var height2 = $("#gallery-images").width();
+          var height2 = $("#gallery-images").width();
           $("#middle-content-gallery h2").css("width", height2-20);
           
           var height = $("#middle-content").height();
           $("#left-recent").css("height", height+30);
           $("#left-social").css("height", height+30);
-          $("#bottom-content").css("top", height+155);
+          if ($(document).width() <= 702) {
+              $("#bottom-content").css("top", height+$("#middle-end").height());
+            }
+            else {
+              $("#bottom-content").css("top", height+155);
+            }
+          
           
           var dWidth = $(document).width();
           tempWidth = dWidth;
@@ -70,7 +86,13 @@
             $('#right-content').show();
             $('#left-recent').show();
           }
-          if (dWidth <= 986) {
+          if (dWidth <= 702) {
+            tempWidth = tempWidth - 40-40;
+            correctMiddle();
+            $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height());
+             $("#bottom-content").css("top", height+205);
+          }
+          else if (dWidth <= 986 && dWidth > 702) {
             tempWidth = tempWidth - 60 - 57;
             correctMiddle();
              $("#bottom-content").css("top", height+205);
@@ -86,7 +108,10 @@
             correctMiddle();
             $('#left-recent').show();
           }
-          
+          else {
+            $('#middle-content').css("width", "52.9%");
+            $('#middle-content').css("max-width", "785px");
+          }
           
          
           
@@ -96,7 +121,7 @@
           if (!rightMobile) {
             rightMobile = true;
             $( "#right-mobile-button" ).animate({
-              minWidth: "260px"
+              width: "260px"
             }, 400, function() {
             });
             $('#right-content').show("slow");
@@ -115,7 +140,7 @@
           if (!leftMobile) {
             leftMobile = true;
             $( "#left-mobile-button" ).animate({
-              minWidth: "340px"
+              width: "340px"
             }, 400, function() {
             });
             $('#left-recent').show("slow");
@@ -348,6 +373,7 @@
               
               
             </ul>
+            <br class="clear" />
           </div>
           <div id="middle-end-articles">
             <div id="scroll-container">
@@ -609,7 +635,7 @@
           font-size: 28px;
           color: lightgrey;
           padding-right: 20px;
-          height: 60px;
+          height:  14vw;
           position: relative;
           left: -25px;
           width: 30px;
@@ -632,6 +658,14 @@
         }
       }
       @media screen and (max-width: 986px) {
+        #middle-articles {
+          height: 20vw;
+          padding-bottom: 50px;
+        }
+        
+        #middle-content .middle-article-title h3 {
+          font-size: 17px;
+        }
         #left-recent {
           position: absolute;
           z-index:22;
@@ -650,6 +684,119 @@
         }
         #middle-articles ul li img{ 
           height: 10vw;
+        }
+      }
+      @media screen and (max-width: 702px) {
+        #middle-articles ul li {
+          width: 48%;
+          left: -4%;
+        }
+         #middle-articles ul li img {
+          height: 15vw;
+        }
+        #middle-content .middle-article-title h3 {
+          font-size: 14px;
+          width: 75%;
+          left: 2%;
+        }
+        #middle-articles ul li:nth-child(3) {
+          display: none;
+        }
+        #middle-features {
+          height: auto;
+        }
+        #middle-features ul li {
+          width: 85%;
+          left: 0;
+          float: left;
+        }
+        #middle-features ul li:nth-child(2) {
+          padding-top: 10px;
+        }
+        #left-mobile-button, #right-mobile-button {
+          min-width: 40px !important;
+          width: 32px;
+
+          height: 40px;
+        }
+        #right-mobile-button i, #left-mobile-button i {
+          font-size: 30px;
+          width: 20px;
+          top: 0;
+        }
+        #middle-content {
+          left: 40px;
+        }
+        #left-recent {
+          top: 40px;
+          padding-top: 30px;
+        }
+        #right-content { 
+          padding-top: 30px;
+        }
+        #section-title {
+          text-align: center;
+          left: 0;
+          padding-bottom: 22px;
+          height: 22vw;
+        }
+        #section-title h1 {
+          padding: .5vw;
+          font-size: 7.5vw;
+          left: 0px;
+        }
+        #section-title h4 {
+          display: none;
+        }
+        #top-social-list {
+          text-align: center;
+          left: 0;
+          
+        }
+        .ul-bottom-content {
+          width: 90%;
+          left: 5%;
+        }
+        
+        #middle-end {
+          height: 350px;
+          width: 100%;
+          margin-bottom: -25px;
+        }
+        #middle-end div div  {
+          width: 100%;
+          float: left;
+        }
+        #middle-end div h4, #middle-end div h5 {
+          left: 150px;
+        }
+      }
+      @media screen and (max-width: 629px) {
+        #nav-bar-list ul li:first-child {
+          width: 25px;
+          text-align: center;
+        }
+        #nav-bar-list ul {
+          width: 55px;
+          left: -40px;
+          line-height: 6;
+          font-size: 9px;
+        }
+        #nav-bar-list ul:first-child {
+          width: 34px;
+        }
+        #middle-content-gallery h2 {
+          font-size: 12px;
+          top: -48px;
+          width: 101%;
+        }
+      }
+      @media screen and (max-width: 500px) { 
+        #middle-content-gallery h2 {
+          margin-bottom: -10vw;
+        }
+        #middle-content .middle-article-title h3{
+          font-size: 11px;
         }
       }
     </style>
