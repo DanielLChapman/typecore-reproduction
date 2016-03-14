@@ -20,6 +20,7 @@
         }
         $( window ).load(function() {
             updateFunction();
+          
         });
         $(window).resize(function() {
           if (!throttle) {
@@ -160,6 +161,8 @@
             
         }
         $(document).ready(function() {
+            var height2 = $("#gallery-images").width();
+          $("#middle-content-gallery h2").css("width", height2-20);
             updateFunction();
             var height = $("#middle-content").height();
             $("#left-recent").css("height", height+18);
