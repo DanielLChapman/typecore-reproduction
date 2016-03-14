@@ -89,7 +89,7 @@
           if (dWidth <= 702) {
             tempWidth = tempWidth - 40-40;
             correctMiddle();
-            $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height());
+            $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height() + 22);
              $("#bottom-content").css("top", height+205);
           }
           else if (dWidth <= 986 && dWidth > 702) {
@@ -788,7 +788,6 @@
         #middle-content-gallery h2 {
           font-size: 12px;
           top: -48px;
-          width: 101%;
         }
       }
       @media screen and (max-width: 500px) { 
@@ -797,6 +796,21 @@
         }
         #middle-content .middle-article-title h3{
           font-size: 11px;
+        }
+      }
+      @media screen and (max-width: 461px) {  
+        #nav-bar-list ul {
+          width: 40px;
+        }
+        #nav-bar-list ul:first-child {
+          width: 20px;
+        }
+        #middle-content-gallery h2 {
+          font-size: 10px;
+          top: -46px;
+        }
+        #middle-end div h4, #middle-end div h5 {
+          left: 120px;
         }
       }
     </style>
