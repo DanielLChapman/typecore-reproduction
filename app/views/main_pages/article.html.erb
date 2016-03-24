@@ -1,0 +1,346 @@
+<script>
+   var throttle = false;
+ var rightMobile = leftMobile = false;
+ var moreScroll = 1100;
+
+ function resetThrottle() {
+   throttle = false;
+   var height = $("#middle-content").height();
+   $("#left-recent").css("height", height + 30);
+   $("#left-social").css("height", height + 30);
+ }
+ $(window).load(function() {
+   updateFunction();
+ });
+ $(window).resize(function() {
+   if (!throttle) {
+     updateFunction();
+     throttle = true;
+   }
+   setTimeout(resetThrottle, 150);
+ });
+
+ function correctRight() {
+   $('#right-content').hide();
+   if ($(document).width() <= 702) {
+     $('#right-mobile-button').css("width", "40px");
+   } else {
+     $('#right-mobile-button').css("width", "57px");
+   }
+   $('#right-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+   $('#right-mobile-button i').css("left", "12px");
+   rightMobile = false;
+ }
+
+ function correctLeft() {
+   $('#left-recent').hide();
+   if ($(document).width() <= 702) {
+     $('#left-mobile-button').css("width", "40px");
+   } else {
+     $('#left-mobile-button').css("width", "57px");
+   }
+   $('#left-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+   $('#left-mobile-button i').css("left", "12px");
+   leftMobile = false;
+ }
+ var tempWidth = $(document).width();
+
+ function correctMiddle() {
+   $('#middle-content').css("width", tempWidth);
+   $('#middle-content').css("max-width", tempWidth + 10);
+   if (Math.abs(oldWidth - tempWidth) > 5) {
+     correctRight();
+     correctLeft();
+   }
+   oldWidth = tempWidth;
+
+ }
+ var oldWidth = tempWidth;
+
+ function updateFunction() {
+   var height = $("#middle-content").height();
+   $("#left-recent").css("height", height + 30);
+   $("#left-social").css("height", height + 30);
+   if ($(document).width() <= 702) {
+     $("#bottom-content").css("top", height + $("#middle-end").height());
+   } else {
+     $("#bottom-content").css("top", height + 155);
+   }
+
+   var dWidth = $(window).width();
+   tempWidth = dWidth;
+   if (dWidth > 1290) {
+     $('#middle-content').css("width", "52.9%");
+     $('#middle-content').css("max-width", "785px");
+     $('#right-content').show();
+     $('#left-recent').show();
+   }
+   if (dWidth <= 702) {
+     tempWidth = tempWidth - 40 - 40;
+     correctMiddle();
+     $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height() + 22);
+     $("#bottom-content").css("top", height + 205);
+   } else if (dWidth <= 986 && dWidth > 702) {
+     $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height());
+     tempWidth = tempWidth - 60 - 57;
+     correctMiddle();
+     $("#bottom-content").css("top", height + 205);
+   } else if (dWidth <= 1090 && dWidth > 986) {
+     tempWidth = tempWidth - 340 - 60;
+     correctMiddle();
+     $('#left-recent').show();
+     $("#bottom-content").css("top", height + 205);
+   } else if (dWidth <= 1290 && dWidth > 1090) {
+     tempWidth = tempWidth - 340 - 75 - 60;
+     correctMiddle();
+     $('#left-recent').show();
+   } else {
+     $('#middle-content').css("width", "52.9%");
+     $('#middle-content').css("max-width", "785px");
+   }
+
+ }
+
+ function openRightMobile() {
+
+   if (!rightMobile) {
+     rightMobile = true;
+     $("#right-mobile-button").animate({
+       width: "260px"
+     }, 400, function() {});
+     $('#right-content').show("slow");
+     $('#right-content').css("top", "0");
+     $('#right-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+     $('#right-mobile-button i').css("left", "115px");
+   } else {
+     correctRight();
+   }
+
+ }
+
+ function openLeftMobile() {
+
+   if (!leftMobile) {
+     leftMobile = true;
+     $("#left-mobile-button").animate({
+       width: "340px"
+     }, 400, function() {});
+     $('#left-recent').show("slow");
+     $('#left-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+     $('#left-mobile-button i').css("left", "155px");
+   } else {
+     correctLeft();
+   }
+
+ }
+ $(document).ready(function() {
+   updateFunction();
+   var height = $("#middle-content").height();
+   $("#left-recent").css("height", height + 18);
+   $("#left-social").css("height", height + 20);
+   $(".has-drop-down").on("mouseenter", function() {
+     $(this).children().show("slow");
+     $(this).children().css("display", "list-item");
+   });
+   $(".has-drop-down").on("mouseleave", function() {
+     $("#nav-bar-list ul li:nth-child(n+2)").hide(500);
+     $("#nav-bar-list ul li:nth-child(n+2)").css("display", "none");
+   });
+   $("#left-recent-tab ul li").on("click", function() {
+     $("#left-recent-tab ul .active").removeClass("active");
+     $(this).addClass("active");
+   });
+ });
+</script>
+
+<div id="middle-content">
+      <div id="article-box">
+        <div id="middle-content-title">
+          <h3><span style="color: rgb(46,46,46);">Featured.</span> Whats new?</h3>
+        </div>
+        <div id="article-content">
+          <section id="article-title">
+            <h2>Taking Matters in Your Own Hands: Doing What You Want</h2>
+          </section>
+          <section id="article-tag">By <span>Alexander</span> October 27, 2013</section>
+          <section id="article-image">
+            <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/eye-122694_12801-720x340.jpg">
+          </section>
+          <section id="article-article">
+            Lorem ipsum dolor sit amet, <span>consectetur</span> adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <br /><br /> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
+            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+            <br /><br /> [pullquote align=”right”]”Dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor.”[/pullquote]Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi
+            tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
+            qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+            <br /><br /> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+            officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+            <br /><br /> It’s like a language. You learn the alphabet, which are the scales. You learn sentences, which are the chords. And then you talk extemporaneously with the horn. It’s a wonderful thing to speak extemporaneously, which is something
+            I’ve never gotten the hang of. But musically I love to talk just off the top of my head. And that’s what jazz music is all about.
+            <br /><br /> Stan Getz
+            <br /><br /> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
+            aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores
+            repellat.
+            <br /><br /> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+            sequi nesciunt.
+            <br /><br /> Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+            exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
+            nulla pariatur?
+            <br /><br /> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni.
+          </section>
+          <br class="clear" />
+          <section id="article-share"></section>
+          <section id="article-author">
+            <img src="http://2.gravatar.com/avatar/bc8f699696b5d79ac8c0b66cb83b82be?s=128&d=mm&r=g">
+            <h4>Alexander</h4>
+            <p>A web designer from New York, USA. And then you write some more information about yourself to fill the space out</p>
+          </section>
+          <br class="clear" />
+          <div id="article-may"><i class="fa fa-thumbs-o-up"></i><h3>You May also Like...</h3></div>
+          <section id="article-suggestion">
+            <div id="middle-articles">
+              <ul>
+                <li>
+                  <div>
+                    <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                    <section class="middle-article-title">
+                      <h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                    <section class="middle-article-title">
+                      <h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                    <section class="middle-article-title">
+                      <h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <script>
+            $(document).ready(function() {
+              $(".comment-content h6").on("click", function() {
+                var htmlForm = "<div id='comment-form'>" + $("#comment-form").html() + "</div>";
+                $("#comment-form").remove();
+                $(this).append(htmlForm);
+                $("#comment-form").addClass("active-form");
+                $("#cancel-form").animate({ right: "30px" }, 500);
+              });
+              $(document).on('click', '#cancel-form', function() {
+                var htmlForm = "<div id='comment-form'>" + $("#comment-form").html() + "</div>";
+                $("#comment-form").remove();
+                $(".middle-comments").parent().append(htmlForm);
+                $("#cancel-form").animate({ right: "-300px" }, 500);
+              });
+            });
+          </script>
+            <div class="middle-comments">
+              <ul>
+                <li>
+                  <div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/>
+                    <br/>
+Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <br/>
+                    <h6>Reply</h6>
+                  </div>
+                </li>
+                <ul>
+                  <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/>
+                        </p><br/>
+                    <h6>Reply</h6>
+                  </div></li>
+                  <ul>
+                    <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/>
+                    <br/>
+Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p><br/>
+                    <h6>Reply</h6>
+                  </div></li>
+                    <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/>
+                    <br/>
+Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                      <br/>
+Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p><br/>
+                    <h6>Reply</h6>
+                      
+                  </div></li>
+                    
+                  </ul>
+                </ul>
+                <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/>
+                        </p><br/>
+                    <h6>Reply</h6>
+                  
+                  </div></li>
+                <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+                        </p><br/>
+                    <h6>Reply</h6>
+                  
+                  </div></li>
+                <ul>
+                  <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+                        </p><br/>
+                    <h6>Reply</h6>
+                  </div></li>
+                  <li><div class="comment-content">
+                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
+</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
+                        </p><br/>
+                    <h6>Reply</h6>
+                  </div></li>
+                  
+                </ul>
+              </ul>
+            </div>
+        </div>
+      </div>
+          <div id="comment-form">
+          <form action="#">
+            <label for="fname">Comment</label>
+            <textarea id="fname" name="firstname"></textarea>
+
+            <label for="lname">Name</label>
+            <label for="country">Email</label>
+            <input type="text" id="lname" name="lastname">
+            <input type="text" id="email" name="lastname">
+            
+            <label for="country">Website</label>
+            <input type="text" id="website" name="lastname">
+            
+            <input type="submit" id="submit-button" value="Post Comment">
+            
+            
+          </form>
+            <button type="button" id="cancel-form">CANCEL REPLY</button>
+        </div>
+      <br class="clear" />
+    </div>

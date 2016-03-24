@@ -1,0 +1,338 @@
+<script>
+  var throttle = false;
+var rightMobile = leftMobile = false;
+var moreScroll = 1100;
+
+function resetThrottle() {
+  throttle = false;
+  var height = $("#middle-content").height();
+  $("#left-recent").css("height", height + 30);
+  $("#left-social").css("height", height + 30);
+}
+$(window).load(function() {
+  updateFunction();
+  setTimeout(function() {
+    var height2 = $("#gallery-images").width();
+    $("#middle-content-gallery h2").css("width", height2 - 20);
+  }, 1000);
+});
+$(window).resize(function() {
+  if (!throttle) {
+    updateFunction();
+    throttle = true;
+  }
+  setTimeout(resetThrottle, 150);
+});
+
+function correctRight() {
+  $('#right-content').hide();
+  if ($(document).width() <= 702) {
+    $('#right-mobile-button').css("width", "40px");
+  } else {
+    $('#right-mobile-button').css("width", "57px");
+  }
+  $('#right-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+  $('#right-mobile-button i').css("left", "12px");
+  rightMobile = false;
+}
+
+function correctLeft() {
+  $('#left-recent').hide();
+  if ($(document).width() <= 702) {
+    $('#left-mobile-button').css("width", "40px");
+  } else {
+    $('#left-mobile-button').css("width", "57px");
+  }
+  $('#left-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+  $('#left-mobile-button i').css("left", "12px");
+  leftMobile = false;
+}
+var tempWidth = $(document).width();
+
+function correctMiddle() {
+
+  $("#overlay").css("width", tempWidth);
+  $("#overlay").css("max-width", tempWidth + 10);
+  $('#middle-content').css("width", tempWidth);
+  $('#middle-content').css("max-width", tempWidth + 10);
+  if (Math.abs(oldWidth - tempWidth) > 5) {
+    correctRight();
+    correctLeft();
+  }
+  oldWidth = tempWidth;
+
+}
+var oldWidth = tempWidth;
+
+function updateFunction() {
+  var height2 = $("#gallery-images").width();
+  $("#middle-content-gallery h2").css("width", height2 - 20);
+
+  var height = $("#middle-content").height();
+  $("#left-recent").css("height", height + 30);
+  $("#left-social").css("height", height + 30);
+  if ($(document).width() <= 702) {
+    $("#bottom-content").css("top", height + $("#middle-end").height());
+  } else {
+    $("#bottom-content").css("top", height + 155);
+  }
+
+  var dWidth = $(window).width();
+  tempWidth = dWidth;
+  if (dWidth > 1290) {
+    $('#middle-content').css("width", "52.9%");
+    $('#middle-content').css("max-width", "785px");
+    $('#right-content').show();
+    $('#left-recent').show();
+  }
+  if (dWidth <= 702) {
+    tempWidth = tempWidth - 40 - 40;
+    correctMiddle();
+    $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height() + 22);
+    $("#bottom-content").css("top", height + 205);
+  } else if (dWidth <= 986 && dWidth > 702) {
+    $("#left-mobile-button, #right-mobile-button").css("top", 55 + $("#section-title").height());
+    tempWidth = tempWidth - 60 - 57;
+    correctMiddle();
+    $("#bottom-content").css("top", height + 205);
+  } else if (dWidth <= 1090 && dWidth > 986) {
+    tempWidth = tempWidth - 340 - 60;
+    correctMiddle();
+    $('#left-recent').show();
+    $("#bottom-content").css("top", height + 205);
+  } else if (dWidth <= 1290 && dWidth > 1090) {
+    tempWidth = tempWidth - 340 - 75 - 60;
+    correctMiddle();
+    $('#left-recent').show();
+  } else {
+    $('#middle-content').css("width", "52.9%");
+    $('#middle-content').css("max-width", "785px");
+  }
+
+}
+
+function openRightMobile() {
+
+  if (!rightMobile) {
+    rightMobile = true;
+    $("#right-mobile-button").animate({
+      width: "260px"
+    }, 400, function() {});
+    $('#right-content').show("slow");
+    $('#right-content').css("top", "0");
+    $('#right-mobile-button').html("<i class='fa fa-angle-double-right'></i>");
+    $('#right-mobile-button i').css("left", "115px");
+  } else {
+    correctRight();
+  }
+
+}
+
+function openLeftMobile() {
+
+  if (!leftMobile) {
+    leftMobile = true;
+    $("#left-mobile-button").animate({
+      width: "340px"
+    }, 400, function() {});
+    $('#left-recent').show("slow");
+    $('#left-mobile-button').html("<i class='fa fa-angle-double-left'></i>");
+    $('#left-mobile-button i').css("left", "155px");
+  } else {
+    correctLeft();
+  }
+
+}
+$(document).ready(function() {
+  updateFunction();
+  var height = $("#middle-content").height();
+  $("#left-recent").css("height", height + 18);
+  $("#left-social").css("height", height + 20);
+  $(".has-drop-down").on("mouseenter", function() {
+    $(this).children().show("slow");
+    $(this).children().css("display", "list-item");
+  });
+  $(".has-drop-down").on("mouseleave", function() {
+    $("#nav-bar-list ul li:nth-child(n+2)").hide(500);
+    $("#nav-bar-list ul li:nth-child(n+2)").css("display", "none");
+  });
+  $("#left-recent-tab ul li").on("click", function() {
+    $("#left-recent-tab ul .active").removeClass("active");
+    $(this).addClass("active");
+  });
+  $("#middle-content-gallery ul li").on("click", function() {
+    $("#middle-content-gallery ul .active").removeClass("active");
+    $(this).addClass("active");
+  });
+  $("#gallery-images").on("mouseenter", function() {
+    var height = $("#gallery-images").height() - 58;
+    $("#overlay").css("height", height).hide();
+    $("#overlay").css("width", $("#gallery-images").width());
+    $("#overlay").stop().fadeIn();
+  });
+  $("#overlay").on("mouseleave", function() {
+    $("#overlay").stop().fadeOut();
+  });
+  $("#scroll-container").scroll(function() {
+    var x = document.getElementById("scroll-container");
+    if (x.scrollTop > moreScroll) {
+      var nhtml = $("#scroll-container").html();
+      var nhtml = nhtml + nhtml;
+      $("#scroll-container").html(nhtml);
+      moreScroll = 1000000;
+    }
+  });
+});
+  
+</script>
+    
+    <div id="middle-content">
+          <div id="middle-content-title">
+            <h3><span style="color: rgb(46,46,46);">Featured.</span> Whats new?</h3>
+          </div>
+          <div id="middle-content-gallery">
+            <a href="article.html"><div id="overlay"></div>
+            </a>
+            <ul>
+              <li class="active" ><i class="fa fa-circle"></i></li>
+              <li><i class="fa fa-circle"></i></li>
+              <li><i class="fa fa-circle"></i></li>
+            </ul>
+            <div id="fa-arrows">
+              <i class="left-move fa fa-angle-left"></i>
+              <i class="right-move fa fa-angle-right"></i>
+            </div>
+            <a href="article.html"><img id="gallery-images" src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-720x340.jpg">
+            <h2>Things To Do When a Cold Winter Approaches</h2>
+            </a>
+          </div>
+          <div id="middle-articles">
+            <ul>
+              <li><a href="article.html"><div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                </div></a></li>
+              <li><a href="article.html"><div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                </div></a></li>
+              <li><a href="article.html"><div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes</h3></section>
+                </div></a></li>
+            </ul>
+          </div>
+          <div id="middle-features">
+            <ul>
+              <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+              <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+              <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+              <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+            </ul>
+            <br class="clear" />
+          </div>
+          <div id="middle-end-articles">
+            <div id="scroll-container">
+              <ul>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+                <li><a href="article.html"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                  </div></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div id="middle-end-feature">
+            <div>
+              <h5>Recent Posts</h5>
+                <ul>
+                  <li><a href="article.html"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                  <li><a href="article.html"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton Maryton Ashton</a></li>
+                  <li><a href="article.html"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                </ul> 
+            </div>
+            <div>
+              <h5>Recent Comments</h5>
+                <ul>
+                  <li><a href="article.html"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                  <li><a href="article.html"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                  <li><a href="article.html"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                </ul> 
+            </div>
+            <br class="clear" />
+          </div>
+          <div id="middle-end">
+            <h4><i class="fa fa-folder-open"></i> EDITOR PICKS</h4>
+            <div>
+              <a href="article.html">
+              <div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-160x160.jpg">
+                <h4>Things To Do When a Cold Winter Approaches</h4>
+                <h5>25 OCT, 2014</h5>
+              </div>
+              </a>
+              <a href="article.html">
+              <div>
+                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-160x160.jpg">
+                <h4>Things To Do When a Cold Winter Approaches</h4>
+                <h5>25 OCT, 2014</h5>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
