@@ -20,10 +20,6 @@
         }
         $( window ).load(function() {
             updateFunction();
-            setTimeout(function() {
-              var height2 = $("#gallery-images").width();
-          $("#middle-content-gallery h2").css("width", height2-20);
-            }, 1000);
         });
         $(window).resize(function() {
           if (!throttle) {
@@ -583,12 +579,10 @@ Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dol
          position: relative;
          left: 5%;
          height: 400px;
-         -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s;
-        transition: width 2s, height 2s, background-color 2s, transform 2s;
          background-color: lightgray;
       }
       .active-form {
-        left: -10% !important;
+        left: -15% !important;
       }
       label {
         color: black;
