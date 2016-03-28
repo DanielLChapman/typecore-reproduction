@@ -135,6 +135,7 @@
  }
  $(document).ready(function() {
    updateFunction();
+   
    var height = $("#middle-content").height();
    $("#left-recent").css("height", height + 18);
    $("#left-social").css("height", height + 20);
@@ -153,6 +154,7 @@
  });
 </script>
 
+<% provide(:title, "Article") %>
 <div id="middle-content">
       <div id="article-box">
         <div id="middle-content-title">

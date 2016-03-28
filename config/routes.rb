@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'main_pages/home'
+  get 'users/new'
 
-  get 'main_pages/author'
-
-  get 'main_pages/article'
-
+  root             'main_pages#home'
+  get 'author'    => 'main_pages#author'
+  get 'article'   => 'main_pages#article'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
