@@ -1,8 +1,9 @@
 class Article < ActiveRecord::Base
   belongs_to :user
-  validates :user_id, :title, :category, :body, presence: true
+  validates :user_id, :title, :category, :body, :tag, presence: true
   mount_uploader :picture, PictureUploader
   validate  :picture_size
+  is_impressionable
   
   private
 
