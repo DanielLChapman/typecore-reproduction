@@ -96,46 +96,44 @@
           <ul class="clock">
             <% @i = -1 %>
             <% @num = -5 %>
-            <% if (@art_size != 0) %>
-              <% while @i >= @num  do %>
-                <% if (!@current_art[@i].nil?) %>
-                  <li><a href="article?query=<%= @current_art[@i].id  %>">
-                    <div>
-                      <img src="<%= @current_art[@i].picture %>">
-                      <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= @current_art[@i].category %>D</span></h4>
-                      <h5 class="current-art-title-<%= @i %>"><%= @current_art[@i].title %></h5>
-                      <br class="clear-float" />
-                      <h3 style="padding-bottom: 10px;"><%= @current_art[@i].created_at.to_s(format = :long) %></h3>
-                      </div>
-                      </a>
-                    </li style="margin-bottom: 20px;">
-                <br class="clear-float" />
-                <% end %>
-                <% @i -=1 %>
+            
+            <% while @i >= @num  do %>
+              <% if (!@current_art[@i].nil?) %>
+                <li><a href="article?query=<%= @current_art[@i].id  %>">
+                  <div>
+                    <img src="<%= @current_art[@i].picture %>">
+                    <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= @current_art[@i].category %>D</span></h4>
+                    <h5 class="current-art-title-<%= @i %>"><%= @current_art[@i].title %></h5>
+                    <br class="clear-float" />
+                    <h3 style="padding-bottom: 10px;"><%= @current_art[@i].created_at.to_s(format = :long) %></h3>
+                    </div>
+                    </a>
+                  </li style="margin-bottom: 20px;">
+              <br class="clear-float" />
               <% end %>
+              <% @i -=1 %>
             <% end %>
           </ul>
           <ul class="star">
             <% @i = 0 %>
             <% @num = 5 %>
-            <% if (@art_size != 0) %>
-              <% while @i < @num  do %>
-              <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
-                <% if (!@arts_hot[0].nil?) %>
-                  <li><a href="article?query=<%= @arts_hot[0].id  %>">
-                    <div>
-                      <img src="<%= @arts_hot[0].picture %>">
-                      <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= @arts_hot[0].category %>D</span></h4>
-                      <h5 class="current-art-title-<%= @i %>"><%= @arts_hot[0].title %></h5>
-                      <br class="clear-float" />
-                      <h3 style="padding-bottom: 10px;"><%= @arts_hot[0].created_at.to_s(format = :long) %></h3>
-                      </div>
-                      </a>
-                    </li style="margin-bottom: 20px;">
-                <br class="clear-float" />
-                <% end %>
-                <% @i +=1 %>
+            
+            <% while @i < @num  do %>
+            <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
+              <% if (!@arts_hot.nil?) %>
+                <li><a href="article?query=<%= @arts_hot[0].id  %>">
+                  <div>
+                    <img src="<%= @arts_hot[0].picture %>">
+                    <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= @arts_hot[0].category %>D</span></h4>
+                    <h5 class="current-art-title-<%= @i %>"><%= @arts_hot[0].title %></h5>
+                    <br class="clear-float" />
+                    <h3 style="padding-bottom: 10px;"><%= @arts_hot[0].created_at.to_s(format = :long) %></h3>
+                    </div>
+                    </a>
+                  </li style="margin-bottom: 20px;">
+              <br class="clear-float" />
               <% end %>
+              <% @i +=1 %>
             <% end %>
           </ul>
           <ul class="comment">
@@ -194,22 +192,21 @@
               <div id="right-hot-container">
                 <% @i = 0 %>
                 <% @num = 5 %>
-                <% if (@art_size != 0) %>
-                  <% while @i < @num  do %>
-                  
-                  <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
-                    <% if (!@arts_hot[0].nil?) %>
-                      <a href="article?query=<%= @arts_hot[0].id  %>">
-                        <div>
-                          <img src="<%= @arts_hot[0].picture %>">
-                          <h4>FEATURED <span style="color: gray;">/</span><%= @arts_hot[0].category %></h4>
-                          <h3><%= @arts_hot[0].title %></h3>
-                          <h5><%= @arts_hot[0].created_at.to_s(format = :long) %></h5>
-                        </div>
-                      </a>
-                    <% end %>
-                    <% @i +=1 %>
+                
+                <% while @i < @num  do %>
+                
+                <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
+                  <% if (!@arts_hot[0].nil?) %>
+                    <a href="article?query=<%= @arts_hot[0].id  %>">
+                      <div>
+                        <img src="<%= @arts_hot[0].picture %>">
+                        <h4>FEATURED <span style="color: gray;">/</span><%= @arts_hot[0].category %></h4>
+                        <h3><%= @arts_hot[0].title %></h3>
+                        <h5><%= @arts_hot[0].created_at.to_s(format = :long) %></h5>
+                      </div>
+                    </a>
                   <% end %>
+                  <% @i +=1 %>
                 <% end %>
               </div>
             </div>
