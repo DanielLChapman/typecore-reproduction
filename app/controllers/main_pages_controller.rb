@@ -8,15 +8,22 @@ class MainPagesController < ApplicationController
   end
 
   def article
-    if(!params.has_key?(:query)) 
-      params[:query] = 1
+    @impess = params[:query]
+    if(!Article.exists?(@impess) ) 
+      @impess = Article.last.id
+      @article_items = Article.where("id=?", @impess)
+      impressionist(@article_items[0], @impess)
+    else 
+      @article_items = Article.where("id = ?", @impess)
+      impressionist(@article_items[0], @impess)
     end
-    #new articles
-    @article_items = Article.where("id = ?", params[:query])
+    
+    #current_art
+    @current_art = Article.all
+    @art_size = @current_art.length
     
     #most viewed
-    impressionist(@article_items[0], params[:query])
-    @art = Article.all
+    @art = @current_art
     @imp = Impression.all
     @i = 1
     @a = Array.new
