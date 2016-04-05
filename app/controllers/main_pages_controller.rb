@@ -20,7 +20,6 @@ class MainPagesController < ApplicationController
     
     #current_art
     @current_art = Article.all
-    @art_size = @current_art.length
     
     #most viewed
     @art = @current_art
@@ -28,19 +27,24 @@ class MainPagesController < ApplicationController
     @i = 1
     @a = Array.new
     @a[0] = [0,0]
-    while (@i <= @art.length)
-    	@a[@i] = [@i, 0]
-    	@i += 1
+    if (@art != 0)
+      @num = 5
+      while (@i <= @art.length)
+      	@a[@i] = [@i, 0]
+      	@i += 1
+      end
+      @i = 0
+      
+      while(@i < @imp.length)
+      	@temp = @imp[@i].message.to_i
+      	@a[@temp][1] += 1
+      	@i+=1
+      end
+      @a = @a.sort_by {|a,b| b}.reverse
+      @i = 0
+    else
+      @num = 0
     end
-    @i = 0
-    
-    while(@i < @imp.length)
-    	@temp = @imp[@i].message.to_i
-    	@a[@temp][1] += 1
-    	@i+=1
-    end
-    @a = @a.sort_by {|a,b| b}.reverse
-    @i = 0
     
     #related_items
     @artcat = @article_items[0].category
