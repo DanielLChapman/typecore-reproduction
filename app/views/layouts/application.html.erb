@@ -96,7 +96,7 @@
           <ul class="clock">
             <% @i = -1 %>
             <% @num = -5 %>
-            <% if @art_size != 0 %>
+            <% if (@art_size != 0) %>
               <% while @i >= @num  do %>
                 <% if (!@current_art[@i].nil?) %>
                   <li><a href="article?query=<%= @current_art[@i].id  %>">
@@ -118,7 +118,7 @@
           <ul class="star">
             <% @i = 0 %>
             <% @num = 5 %>
-            <% if @art_size != 0 %>
+            <% if (@art_size != 0) %>
               <% while @i < @num  do %>
               <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
                 <% if (!@arts_hot[0].nil?) %>
@@ -194,7 +194,7 @@
               <div id="right-hot-container">
                 <% @i = 0 %>
                 <% @num = 5 %>
-                <% if @art_size != 0 %>
+                <% if (@art_size != 0) %>
                   <% while @i < @num  do %>
                   
                   <% @arts_hot = Article.where("id=?", @a[@i][0]) %>
