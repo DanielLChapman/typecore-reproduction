@@ -94,24 +94,20 @@
         </script>
         <div id="left-recent-tab-display">
           <ul class="clock">
-            <% @i = 0 %>
-            
-            <% while @i <= @num  do %>
-              <% if (!@current_art[@i].nil?) %>
-                <li><a href="article?query=<%= @current_art[@i].id  %>">
+             <% @current_art.each do |c| %>
+               <li><a href="article?query=<%= c.id  %>">
                   <div>
-                    <img src="<%= @current_art[@i].picture %>">
-                    <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= @current_art[@i].category %>D</span></h4>
-                    <h5 class="current-art-title-<%= @i %>"><%= @current_art[@i].title %></h5>
+                    <img src="<%= c.picture %>">
+                    <h4 ><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);text-transform: uppercase"><%= c.category %>D</span></h4>
+                    <h5 class="current-art-title-<%= c.id %>"><%= c.title %></h5>
                     <br class="clear-float" />
-                    <h3 style="padding-bottom: 10px;"><%= @current_art[@i].created_at.to_s(format = :long) %></h3>
+                    <h3 style="padding-bottom: 10px;"><%= c.created_at.to_s(format = :long) %></h3>
                     </div>
                     </a>
                   </li style="margin-bottom: 20px;">
               <br class="clear-float" />
-              <% end %>
-              <% @i +=1 %>
-            <% end %>
+             <% end %>
+          
           </ul>
           <ul class="star">
             <% @hot_article_array.each do |a| %>

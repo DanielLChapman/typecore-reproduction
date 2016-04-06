@@ -2,7 +2,8 @@ class MainPagesController < ApplicationController
   before_action :logged_in_user, only: [:console]
 
   def home
-    @art = Article.count('id')
+    @art_full = Article.all
+    @art = @art_full.length
     @num = 0
     @noFeatured = false
     @featured = 0
@@ -21,6 +22,7 @@ class MainPagesController < ApplicationController
         end
         if (@featured[0].nil?)
           @num = 0
+          @noFeatured = true
         end
       else if (@featured.length < 8)
         @temp = 8

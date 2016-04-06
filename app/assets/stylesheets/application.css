@@ -526,7 +526,7 @@ width: 52.9%;
   display: inline-block;
   width: 42%;
   cursor: pointer;
-  left: 5%;
+  left: 0%;
   position: relative;
   top: 0;
   float: left;
@@ -557,7 +557,7 @@ width: 52.9%;
 
 #middle-features ul li h3 {
   color: lightslategray;
-  left: 30%;
+  left: 5%;
   width: 65%;
   font-size: 11px;
   position: relative;
@@ -623,16 +623,18 @@ width: 52.9%;
 }
 
 #middle-end-articles ul li {
-  display: inline-block;
+  float: left;
   position: relative;
   padding-top: 15px;
   width: 49%;
   border-bottom: 1px solid rgba(246, 246, 246, .4);
-  min-height: 410px;
 }
 
 #middle-end-articles ul li img {
+  height: 210px;
   width: 80%;
+  margin: 0 auto;
+  position: relative;
   box-shadow: 0 0 2px #000;
 }
 
@@ -654,8 +656,6 @@ width: 52.9%;
   position: relative;
   top: -10px;
   letter-spacing: 0.5px;
-  line-height: 30px;
-  max-height: 5ch;
   overflow: hidden;
 }
 
@@ -670,8 +670,6 @@ width: 52.9%;
   color: dimgrey;
   letter-spacing: .3px;
   font-size: 12px;
-  max-height: 20ch;
-  line-height: 30px;
 }
 
 #middle-end-feature {

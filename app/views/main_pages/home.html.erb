@@ -216,95 +216,70 @@ $(document).ready(function() {
           </div>
           <div id="middle-articles">
             <ul>
-              <li><a href="article.html"><div>
-                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
-                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes   Make An Awesome Blueberry Pie In Minutes   Make An Awesome Blueberry Pie In Minutes   
-                Make An Awesome Blueberry Pie In Minutes   </h3><br class="clear" /></section>
-                </div></a></li>
-              <li><a href="article.html"><div>
-                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
-                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes  </h3><br class="clear" /></section>
-                </div></a></li>
-              <li><a href="article.html"><div>
-                <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
-                <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes  </h3><br class="clear" /></section>
-                </div></a></li>
-              
+              <% if (!@noFeatured) %>
+                <% for f in 1..3 %>
+                  <li><a href="article?query=<%= @featured[f].id %>"><div>
+                  <img src="<%= @featured[f].picture %>">
+                  <section class="middle-article-title"><h3><%= @featured[f].title %>  </h3><br class="clear" /></section>
+                  </div></a></li>
+                <% end %>
+              <% else %>
+                <li><a href="article.html"><div>
+                  <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                  <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes   Make An Awesome Blueberry Pie In Minutes   Make An Awesome Blueberry Pie In Minutes   
+                  Make An Awesome Blueberry Pie In Minutes   </h3><br class="clear" /></section>
+                  </div></a></li>
+                <li><a href="article.html"><div>
+                  <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                  <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes  </h3><br class="clear" /></section>
+                  </div></a></li>
+                <li><a href="article.html"><div>
+                  <img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/09/steve-2153-720x340.jpg">
+                  <section class="middle-article-title"><h3>Make An Awesome Blueberry Pie In Minutes  </h3><br class="clear" /></section>
+                  </div></a></li>
+              <% end %>
             </ul>
             <br class="clear-float" style="padding: 20px;"/>
           </div>
           <div id="middle-features">
             <ul>
-              <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
-              <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
-              <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
-              <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+              <% if (!@noFeatured) %>
+                <% for f in 4..7 %>
+                  <li><a href="article?query=<%= @featured[f].id %>"><div><img src="<%= @featured[f].picture %>"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56); text-transform: uppercase"><%= @featured[f].category %></span></span></h4><h5><%= @featured[f].title[0...39] %><%= if (@featured[f].title.length >= 39) then puts "..." end %></h5><h3><%= @featured[f].created_at.to_s(format = :long) %></h3></div></a></li>
+                <% end %>
+              <% else %>
+                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg"><h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4><h5>Road Bike Party 2 with Martyn Ashton</h5><h3>16 Nov, 2014</h3></div></a></li>
+              <% end %>
             </ul>
             <br class="clear" />
           </div>
           <div id="middle-end-articles">
             <div id="scroll-container">
               <ul>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
-                <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
-                  <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
-                  <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
-                  <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
-                  </div></a>
-                </li>
+                <% if (@art_full.length > 0) %>
+                  <% @art_full = @art_full.reverse %>
+                  <% @art_full.each do |r| %>
+                    <li><a href="article?query=<%= r.id %>"><div><img src="<%= r.picture %>">
+                      <h5><span style="color: red; text-transform: uppercase"><%= r.category %> </span> <%= r.created_at.to_s(format = :long) %></h5>
+                      <h2><%= r.title[0...51] %><%= if (r.title.length >= 51) then puts "..." end %></h2>
+                      <p><%= r.tag[0...150] %><%= if (r.tag.length >= 150) then puts "..." end %></p>
+                      </div></a>
+                    </li>
+                  <% end %>
+                
+                <% else %>
+                  <% for i in 1..12 %>
+                    <li><a href="article"><div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/motorcycle-77552_1280-720x340.jpg">
+                      <h5><span style="color: red;">MUSIC </span> 31 OCT, 2013</h5>
+                      <h2>Riding Bike On The Golden Gate Bridge of San Fransisco</h2>
+                      <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud...</p>
+                      </div></a>
+                    </li>
+                  <% end %>
+                <% end %>
               </ul>
             </div>
           </div>
