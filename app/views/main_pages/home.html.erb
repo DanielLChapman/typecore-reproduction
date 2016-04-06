@@ -202,9 +202,17 @@ $(document).ready(function() {
               <i class="left-move fa fa-angle-left"></i>
               <i class="right-move fa fa-angle-right"></i>
             </div>
-            <a href="article"><img id="gallery-images" src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-720x340.jpg">
-            <h2>Things To Do When a Cold Winter Approaches</h2>
-            </a>
+            <% if (!@noFeatured) %>
+              <a href="article?query=<%= @featured[0].id %>"><img id="gallery-images" src="<%= @featured[0].picture %>">
+              <h2><%= @featured[0].title[0...39] %>
+                  <%= if (@featured[0].title.length >= 39) then puts "..." end %>
+              </h2>
+              </a>
+            <% else %>
+              <a href="article"><img id="gallery-images" src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2014/10/people-690547_1280-720x340.jpg">
+              <h2>Things To Do When a Cold Winter Approaches</h2>
+              </a>
+            <% end %>
           </div>
           <div id="middle-articles">
             <ul>

@@ -2,6 +2,37 @@ class MainPagesController < ApplicationController
   before_action :logged_in_user, only: [:console]
 
   def home
+    @art = Article.count('id')
+    @num = 0
+    @noFeatured = false
+    @featured = 0
+    if (@art != 0) 
+      @num = 8
+      @featured = Article.where("featured=?", "t").order('id desc').limit(8)
+      if (@featured.length < 1) 
+        @temp = 8
+        @featured = Article.limit(@temp).order('id desc').shuffle
+        if (@featured.length < @temp)
+          for i in 0...8
+           if (@featured[i].nil?)
+             @featured[i] = @featured[0]
+           end
+          end
+        end
+        if (@featured[0].nil?)
+          @num = 0
+        end
+      else if (@featured.length < 8)
+        @temp = 8
+        for i in @featured.length..(@temp-1)
+         @featured[i] = @featured[0]
+        end
+      end
+      end
+    else 
+      @noFeatured = true
+    end
+    
   end
 
   def author
