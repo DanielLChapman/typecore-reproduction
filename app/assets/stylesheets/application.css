@@ -626,7 +626,8 @@ width: 52.9%;
   float: left;
   position: relative;
   padding-top: 15px;
-  width: 49%;
+  left: -1%;
+  width: 48%;
   border-bottom: 1px solid rgba(246, 246, 246, .4);
 }
 
@@ -920,7 +921,8 @@ width: 52.9%;
 }
 
 #bottom-content div li img {
-  height: 90px;
+  height: 60px;
+  width: 60px;
   top: 10px;
   position: relative;
   float: left;
@@ -953,7 +955,7 @@ width: 52.9%;
   color: lightsteelblue;
   margin-top: -30px;
   font-weight: 300;
-  left: 80px;
+  left: 50px;
 }
 
 

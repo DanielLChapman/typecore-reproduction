@@ -201,22 +201,11 @@
   </div>
   <% end %>
     <section id="bottom-content">
+      <% if(@not_enough_bool) %>
       <div class="ul-bottom-content">
         <h3>In Mixed</h3>
         <ul>
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton </h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
+          <% for p in 1..3 %>
           <li>
             <a href="article.html">
               <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
@@ -226,21 +215,14 @@
             </a>
           </li>
           <br class="clear-float" />
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton</h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
-
+          <% end %>
         </ul>
       </div>
       <div class="ul-bottom-content">
+        
         <h3>In Lifestyle</h3>
         <ul>
+          <% for p in 1..3 %>
           <li>
             <a href="article.html">
               <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
@@ -250,37 +232,13 @@
             </a>
           </li>
           <br class="clear-float" />
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton</h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton Road Bike Party 2 with Martyn Ashton Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton 
-                Road Bike Party 2 with Martyn Ashton </h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
+          <% end %>
         </ul>
       </div>
       <div class="ul-bottom-content">
         <h3>In Food</h3>
         <ul>
+          <% for p in 1..3 %>
           <li>
             <a href="article.html">
               <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
@@ -290,26 +248,59 @@
             </a>
           </li>
           <br class="clear-float" />
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton</h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
-          <li>
-            <a href="article.html">
-              <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/07/utah-95032_1280-160x160.jpg">
-                <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56);">MIXED</span></h4>
-                <h5>Road Bike Party 2 with Martyn Ashton</h5><br class="clear" />
-                <h3>16 Nov, 2014</h3><br class="clear" /></div>
-            </a>
-          </li>
-          <br class="clear-float" />
+          <% end %>
         </ul>
       </div>
+      <% else %>
+        <div class="ul-bottom-content">
+          <h3>In <span style="text-transform: uppercase"><%= @bottom_articles_1[0].category %> </span></h3>
+          <ul>
+            <% @bottom_articles_1.each do |b| %>
+            <li>
+              <a href="article?query=<%= b.id %>">
+                <div><img src="<%= b.picture %>">
+                  <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56); text-transform: uppercase"><%= b.category %></span></h4>
+                  <h5><%= b.title.html_safe %></h5><br class="clear" />
+                  <h3><%= b.created_at.to_s(format = :long) %></h3><br class="clear" /></div>
+              </a>
+            </li>
+            <br class="clear-float" />
+            <% end %>
+          </ul>
+        </div>
+        <div class="ul-bottom-content">
+          <h3>In <span style="text-transform: uppercase"><%= @bottom_articles_2[0].category %> </span></h3>
+          <ul>
+            <% @bottom_articles_2.each do |b| %>
+            <li>
+              <a href="article?query=<%= b.id %>">
+                <div><img src="<%= b.picture %>">
+                  <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56); text-transform: uppercase"><%= b.category %></span></h4>
+                  <h5><%= b.title.html_safe %></h5><br class="clear" />
+                  <h3><%= b.created_at.to_s(format = :long) %></h3><br class="clear" /></div>
+              </a>
+            </li>
+            <br class="clear-float" />
+            <% end %>
+          </ul>
+        </div>
+        <div class="ul-bottom-content">
+          <h3>In <span style="text-transform: uppercase"><%= @bottom_articles_3[0].category %> </span></h3>
+          <ul>
+            <% @bottom_articles_3.each do |b| %>
+            <li>
+              <a href="article?query=<%= b.id %>">
+                <div><img src="<%= b.picture %>">
+                  <h4><span style="color: rgb(230, 67, 56);">FEATURED</span> / <span style="color: rgb(230, 67, 56); text-transform: uppercase"><%= b.category %></span></h4>
+                  <h5><%= b.title.html_safe %></h5><br class="clear" />
+                  <h3><%= b.created_at.to_s(format = :long) %></h3><br class="clear" /></div>
+              </a>
+            </li>
+            <br class="clear-float" />
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <br class="clear" />
       <section id="footer">
         <h1>TYPECORE<span style="rgb(66,46,46); margin-left: -1px">.</span></h1>

@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :get_current_art
   before_filter :get_most_art
+  before_filter :end_categories
+  
 
   def get_current_art
     @current_art = Article.limit(5).order('id desc')
@@ -49,6 +51,60 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def end_categories
+    @ec_a = Article.uniq.pluck(:category).shuffle
+    @not_enough_bool = false
+    if (@ec_a.length < 3)
+      @not_enough_bool = true
+    else 
+      @bottom_articles_1 = Article.where("category=?", @ec_a[0]).limit(3)
+      @bottom_articles_2 = Article.where("category=?", @ec_a[1]).limit(3)
+      @bottom_articles_3 = Article.where("category=?", @ec_a[2]).limit(3)
+      if (@bottom_articles_1.length < 3) 
+        for i in 1..3
+          if (@bottom_articles_1[i-1].nil?)
+            @bottom_articles_1[i-1] = @bottom_articles_1[0]
+          end
+        end
+      end
+      for i in 1..3
+        if (@bottom_articles_1[i-1].title.length < 25)
+          for w in 1..(25-(@bottom_articles_1[i-1].title.length).to_i)
+            @bottom_articles_1[i-1].title += "&ensp;"
+          end
+        end
+      end
+      if (@bottom_articles_2.length < 3) 
+        for i in 1..3
+          if (@bottom_articles_2[i-1].nil?)
+            @bottom_articles_2[i-1] = @bottom_articles_2[0]
+          end
+        end
+      end
+      for i in 1..3
+        if (@bottom_articles_2[i-1].title.length < 25)
+          for w in 1..(25-(@bottom_articles_2[i-1].title.length).to_i)
+            @bottom_articles_2[i-1].title += "&ensp;"
+          end
+        end
+      end
+      if (@bottom_articles_3.length < 3) 
+        for i in 1..3
+          if (@bottom_articles_3[i-1].nil?)
+            @bottom_articles_3[i-1] = @bottom_articles_3[0]
+          end
+        end
+      end
+      for i in 1..3
+        if (@bottom_articles_3[i-1].title.length < 25)
+          for w in 1..(25-(@bottom_articles_3[i-1].title.length).to_i)
+            @bottom_articles_3[i-1].title += "&ensp;"
+          end
+        end
+      end
+    end
+    
+  end
   
   private
 
