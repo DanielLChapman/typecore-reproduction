@@ -601,7 +601,6 @@ width: 52.9%;
   left: 1px;
   top: -52px;
   height: 1200px;
-  overflow: hidden;
   position: relative;
   border: 1px solid rgba(246, 246, 246, .4);
   padding-bottom: 20px;
@@ -610,30 +609,35 @@ width: 52.9%;
 
 #scroll-container {
   height: 1200px;
-  overflow-y: auto;
+  overflow-y: scroll;
   background-color: gainsboro;
   overflow-x: hidden;
   left: -2%;
   position: relative;
-  width: 107%;
+  width: 104%;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+    column-count: 2; /*3 in those rules is just placeholder -- can be anything*/
+    -webkit-column-width: 300px; /* Chrome, Safari, Opera */
+    -moz-column-width: 300px; /* Firefox */
+    column-width: 300px;
 }
 
 #middle-end-articles ul {
   list-style: none;
+  min-height: 1500px;
 }
 
 #middle-end-articles ul li {
-  float: left;
+  display: inline-block;
   position: relative;
   padding-top: 15px;
-  left: -1%;
-  width: 48%;
+  right: 1%;
   border-bottom: 1px solid rgba(246, 246, 246, .4);
 }
-
 #middle-end-articles ul li img {
   height: 210px;
-  width: 80%;
+  width: 300px;
   margin: 0 auto;
   position: relative;
   box-shadow: 0 0 2px #000;
