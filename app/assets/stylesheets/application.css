@@ -615,12 +615,7 @@ width: 52.9%;
   left: -2%;
   position: relative;
   width: 104%;
-  -webkit-column-count: 2;
-  -moz-column-count: 2;
-    column-count: 2; /*3 in those rules is just placeholder -- can be anything*/
-    -webkit-column-width: 300px; /* Chrome, Safari, Opera */
-    -moz-column-width: 300px; /* Firefox */
-    column-width: 300px;
+  display: inline-block;
 }
 
 #middle-end-articles ul {
@@ -631,8 +626,11 @@ width: 52.9%;
 #middle-end-articles ul li {
   display: inline-block;
   position: relative;
-  padding-top: 15px;
+  margin-left: 10px;
+  vertical-align: top;
   right: 1%;
+  height: 400px;
+  width: 47%;
   border-bottom: 1px solid rgba(246, 246, 246, .4);
 }
 #middle-end-articles ul li img {
