@@ -164,8 +164,18 @@
 <div id="middle-content">
         <div id="middle-admin">
             <% if logged_in? %>
+               <% if flash[:error] %>
+                  <% flash.each do |key, value| %>
+                    <% @temp = value.split(',')%>
+                    <ul class="error-ul">
+                      <% @temp.each do |i| %>
+                        <li><%= i %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+              <% end %>
               <div class="row">
-                <section class="article_form">
+                <section class="article_form" style="display: none">
                     <%= form_for(@article, html: {multipart: true}) do |f| %>
                       <div class="field">
                         
@@ -182,6 +192,34 @@
                         <%= f.text_area :body, placeholder: "Insert Article" %>
                         <br class="clear" />
                         <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+                      </div>
+                      <%= f.submit "Post", class: "btn btn-primary" %>
+                    <% end %>
+                  </section>
+                  
+                  <section class="user_form">
+                   
+                    <%= form_for(@user) do |f| %>
+                      <div class="field">
+
+                        <%= f.label :name, "Name" %>
+                        <%= f.text_field :name, class: 'article-title-text form-control' %>
+                        <br class="clear" />
+                        <%= f.label :email, "Email" %>
+                        <%= f.text_field :email, class: 'article-tag-text form-control' %>
+                        <br class="clear" />
+                        <%= f.label :password, "Password" %>
+                        <%= f.password_field :password, class: 'article-category-text form-control' %>
+                        <br class="clear" />
+                        <%= f.label :password_confirmation, "Confirm" %>
+                        <%= f.password_field :password_confirmation, class: 'article-category-text form-control' %>
+                        <br class="clear" />
+                        <%= f.label :description, "Description" %>
+                        <%= f.text_area :description, placeholder: "Insert Description", class: 'form-control' %>
+                        <br class="clear" />
+                        <%= f.label :admin, "Admin" %>
+                        <%= f.check_box :admin %>
+                        <br class="clear" />
                       </div>
                       <%= f.submit "Post", class: "btn btn-primary" %>
                     <% end %>
@@ -255,28 +293,43 @@
               top: 20px;
               border:1px solid black;
             }
-            .article_form {
+            .article_form, .user_form {
               width: 90%;
               min-height: 800px;
               height: auto;
               
             }
-            .field label:nth-child(1), .field label:nth-child(4), .field label:nth-child(7),.field label:nth-child(10)  {
+
+            .field label:nth-child(1), .field label:nth-child(n+3)  {
               width: 20%;
               font-size: 22px;
               font-family: 'Roboto', sans-serif;
               color: white;
               float: left;
             }
-            .article-title-text, .article-category-text, .article-tag-text ,#article_body {
+            .user_form .field label{
+              font-size: 18px;
+            }
+            .article-title-text, .article-category-text, .article-tag-text ,#article_body, #user_description {
               width: 70%;
               float: left;
               position: relative;
               top: 16px;
               height: 30px;
             }
+            #user_admin {
+              border: 1px solid black;
+              float: left;
+              width: 50px;
+              height: 50px;
+              position: relative;
+              left: -3px;
+            }
             #article_body {
               height: 500px;
+            }
+            #user_description {
+              height: 300px;
             }
             #article_picture {
               position: relative;
@@ -306,4 +359,14 @@
               border-radius: 4px;
               cursor: pointer;
             }
+            .error-ul {
+              list-style: none;
+              color: red;
+              background-color: rgba(45,55,67,.5);
+              width: 80%;
+              position: relative;
+              left: 5%;
+              font-family: 'Roboto', sans-serif;
+            }
+            
           </style>

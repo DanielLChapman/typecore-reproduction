@@ -1,5 +1,5 @@
 class MainPagesController < ApplicationController
-  before_action :logged_in_user, only: [:console]
+  before_action :logged_in_user, only: [:create, :console]
 
   def home
     @art_full = Article.all
@@ -71,8 +71,10 @@ class MainPagesController < ApplicationController
     end
   end
   
+  
   def console
     @article = current_user.articles.build if logged_in?
+    @user = User.new
   end
   
   
@@ -86,5 +88,10 @@ class MainPagesController < ApplicationController
     
     def admin_user
         redirect_to(login_path) unless current_user.author?
+    end
+
+    def user_params
+        params.require(:user).permit(:name, :email, :password,
+                                     :password_confirmation, :description, :admin)
     end
 end
