@@ -42,31 +42,34 @@ class MainPagesController < ApplicationController
 
   def article
     @impess = params[:query]
-    if(!Article.exists?(@impess) ) 
-      @impess = Article.last.id
-      @article_items = Article.where("id=?", @impess)
-      impressionist(@article_items[0], @impess)
-    else 
-      @article_items = Article.where("id = ?", @impess)
-      impressionist(@article_items[0], @impess)
-    end
-    
-    #related_items
-    @artcat = @article_items[0].category
-    @related_items = Article.where("category = ?", @artcat).shuffle
-    if (@related_items.length <= 2) 
-      case @related_items.length # a_variable is the variable we want to compare
-      when 0   #compare to 1
-        @related_items[0] = @article_items[0]; 
-        @related_items[1] = @article_items[0]; 
-        @related_items[2] = @article_items[0]; 
-      when 1    #compare to 2
-        @related_items[1] = @article_items[0]; 
-        @related_items[2] = @article_items[0]; 
-      when 2   #compare to 2
-        @related_items[2] = @article_items[0]; 
-      else
-        puts "huh?"
+    @artsize = Article.all.size
+    if (@artsize != 0)
+      if(!Article.exists?(@impess) ) 
+        @impess = Article.last.id
+        @article_items = Article.where("id=?", @impess)
+        impressionist(@article_items[0], @impess)
+      else 
+        @article_items = Article.where("id = ?", @impess)
+        impressionist(@article_items[0], @impess)
+      end
+      
+      #related_items
+      @artcat = @article_items[0].category
+      @related_items = Article.where("category = ?", @artcat).shuffle
+      if (@related_items.length <= 2) 
+        case @related_items.length # a_variable is the variable we want to compare
+        when 0   #compare to 1
+          @related_items[0] = @article_items[0]; 
+          @related_items[1] = @article_items[0]; 
+          @related_items[2] = @article_items[0]; 
+        when 1    #compare to 2
+          @related_items[1] = @article_items[0]; 
+          @related_items[2] = @article_items[0]; 
+        when 2   #compare to 2
+          @related_items[2] = @article_items[0]; 
+        else
+          puts "huh?"
+        end
       end
     end
   end
@@ -75,6 +78,8 @@ class MainPagesController < ApplicationController
   def console
     @article = current_user.articles.build if logged_in?
     @user = User.new
+    @article_list =  Article.all
+    @user_list = User.all
   end
   
   
@@ -87,6 +92,10 @@ class MainPagesController < ApplicationController
     end
     
     def admin_user
+        redirect_to(login_path) unless current_user.admin?
+    end
+    
+    def author_user
         redirect_to(login_path) unless current_user.author?
     end
 

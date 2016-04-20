@@ -586,7 +586,7 @@ width: 52.9%;
   margin-top: -10px;
 }
 
-@media all and (max-width: 1421px) {
+/*@media all and (max-width: 1421px) {
   #middle-features ul li h5 {
     left: 5%;
     margin-top: -45px;
@@ -594,7 +594,7 @@ width: 52.9%;
   #middle-features ul li h3 {
     margin-top: -70px;
   }
-}
+}*/
 
 #middle-end-articles {
   width: 100%;
@@ -797,12 +797,13 @@ width: 52.9%;
 
 #right-content {
   z-index: 13;
-  height: 170%;
+  min-height: 170%;
   top: 0 !important;
   right: 0;
   background: white;
   min-width: 250px;
   padding-right: 10px;
+  padding-bottom: 30px;
   display: inline-block;
   position: absolute;
 }

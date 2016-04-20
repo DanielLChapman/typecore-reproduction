@@ -4,7 +4,7 @@ class ArticleTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
     # This code is not idiomatically correct.
-    @article = @user.articles.build(body: "Lorem ipsum", title: "Sample Title", category: "Sample")
+    @article = @user.articles.build(body: "Lorem ipsum", title: "Sample Title", category: "Sample", tag: "Tag line")
   end
 
   test "should be valid" do

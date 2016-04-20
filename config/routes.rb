@@ -8,12 +8,16 @@ Rails.application.routes.draw do
   get 'author'    => 'main_pages#author'
   get 'article'   => 'main_pages#article'
   get 'console'   => 'main_pages#console'
+  post 'featured'  => 'articles#featured'
+  post 'admin'  => 'users#admin'
+  post 'author'  => 'users#author'
   post 'create'    => 'main_pages#create'
+  patch 'articleedit' => 'articles#articleedit'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  resources :articles,          only: [:create, :destroy]
-  resources :users,              only: [:create, :destroy, :edit]
+  resources :articles, only: [:create, :destroy, :edit, :featured]
+  resources :users,              only: [:create, :destroy, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

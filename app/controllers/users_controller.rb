@@ -17,6 +17,48 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:error] = "User updated"
+    else
+      flash[:error] = @user.errors.full_messages.to_sentence
+    end
+    redirect_to '/console'
+  end
+  
+  def admin
+    if (!params[:id].nil?)
+      @tempArticle = User.where("id=?", params[:id])
+      if (@tempArticle[0].admin?)
+        @tempArticle[0].admin = false
+      else
+        @tempArticle[0].admin = true
+      end
+      @tempArticle[0].save
+      flash[:error] = "User admin toggled"
+      redirect_to '/console'
+    else
+      redirect_to root_url
+    end
+  end
+  
+  def author
+    if (!params[:id].nil?)
+      @tempArticle = User.where("id=?", params[:id])
+      if (@tempArticle[0].author?)
+        @tempArticle[0].author = false
+      else
+        @tempArticle[0].author = true
+      end
+      @tempArticle[0].save
+      flash[:error] = "User author toggled"
+      redirect_to '/console'
+    else
+      redirect_to root_url
+    end
+  end
+  
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -36,6 +78,10 @@ class UsersController < ApplicationController
     end
     
     def admin_user
+        redirect_to(login_path) unless current_user.admin?
+    end
+    
+    def author_user
         redirect_to(login_path) unless current_user.author?
     end
 end
