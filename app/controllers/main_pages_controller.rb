@@ -41,21 +41,19 @@ class MainPagesController < ApplicationController
   end
 
   def article
+    @comment = Comment.new
     @impess = params[:query]
     @artsize = Article.all.size
     if (@artsize != 0)
       if(!Article.exists?(@impess) ) 
         @impess = Article.last.id
-        @article_items = Article.where("id=?", @impess)
-        impressionist(@article_items[0], @impess)
-      else 
-        @article_items = Article.where("id = ?", @impess)
-        impressionist(@article_items[0], @impess)
       end
+      @article_items = Article.where("id=?", @impess).limit(1)
+      impressionist(@article_items[0], @impess)
       
       #related_items
       @artcat = @article_items[0].category
-      @related_items = Article.where("category = ?", @artcat).shuffle
+      @related_items = Article.where("category = ?", @artcat).limit(3).order("RANDOM()")
       if (@related_items.length <= 2) 
         case @related_items.length # a_variable is the variable we want to compare
         when 0   #compare to 1

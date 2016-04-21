@@ -394,6 +394,7 @@ width: 52.9%;
   left: 4%;
   top: 25px;
   width: 92%;
+  max-height: 400px;
   height: auto;
 }
 
@@ -445,7 +446,24 @@ width: 52.9%;
   background-color: rgba(46, 46, 46, 0.9);
   border-radius: 5px;
 }
-
+#middle-articles-related {
+  list-style: none;
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-bottom: 1px solid rgba(44, 43, 42, .2);
+  padding-bottom: 20px;
+}
+#middle-articles-related li {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin-right: 5px;
+}
+#middle-articles-related li img {
+  width: 100%;
+  height: 160px;
+}
 #middle-articles {
   width: 100%;
   height: auto;

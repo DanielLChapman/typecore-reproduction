@@ -191,7 +191,7 @@
           <div id="article-may"><i class="fa fa-thumbs-o-up"></i><h3>You May also Like...</h3></div>
           <section id="article-suggestion">
             
-            <div id="middle-articles">
+            <div id="middle-articles-related">
               <ul>
                 <li>
                   <a href="">
@@ -231,19 +231,31 @@
                 $(this).append(htmlForm);
                 $("#comment-form").addClass("active-form");
                 $("#cancel-form").animate({ right: "30px" }, 500);
+                $("#comment_parent").val($(this).parent().attr("value"));
               });
               $(document).on('click', '#cancel-form', function() {
                 var htmlForm = "<div id='comment-form'>" + $("#comment-form").html() + "</div>";
                 $("#comment-form").remove();
                 $(".middle-comments").parent().append(htmlForm);
                 $("#cancel-form").animate({ right: "-300px" }, 500);
+                $("#comment_parent").val('-1');
               });
             });
           </script>
-            <div class="middle-comments">
+            <div class="middle-comments" id="comment-anchor">
+              <% if flash[:error] %>
+                  <% flash.each do |key, value| %>
+                    <% @temp = value.split(',')%>
+                    <ul class="error-ul">
+                      <% @temp.each do |i| %>
+                        <li><%= i %></li>
+                      <% end %>
+                    </ul>
+              <% end %>
+            <% end %>
               <ul>
                 <li>
-                  <div class="comment-content">
+                  <div value="1" class="comment-content" id="comment-1">
                     <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
 </h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
 <br/>
@@ -254,7 +266,7 @@ Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dol
                   </div>
                 </li>
                 <ul>
-                  <li><div class="comment-content">
+                  <li><div value="2" class="comment-content">
                     <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
 </h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
 <br/>
@@ -321,25 +333,25 @@ Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dol
             </div>
         </div>
       </div>
-          <div id="comment-form">
-          <form action="#">
-            <label for="fname">Comment</label>
-            <textarea id="fname" name="firstname"></textarea>
-
-            <label for="lname">Name</label>
-            <label for="country">Email</label>
-            <input type="text" id="lname" name="lastname">
-            <input type="text" id="email" name="lastname">
-            
-            <label for="country">Website</label>
-            <input type="text" id="website" name="lastname">
-            
-            <input type="submit" id="submit-button" value="Post Comment">
-            
-            
-          </form>
-            <button type="button" id="cancel-form">CANCEL REPLY</button>
-        </div>
+      <div id="comment-form">
+      <%= form_for @comment, :url => comments_path(:id => @impess), method: "post" do |f| %>
+        
+          <%= f.label :content, "Comment" %>
+          <%= f.text_area :content, placeholder: "Compose new comment", id: 'fname' %>
+          
+          <%= f.label :name, "Name" %>
+          <%= f.label :email, "Email" %>
+          <%= f.text_field :name, placeholder: "", id: 'lname' %>
+          <%= f.text_field :email, placeholder: "", id: 'email' %>
+          
+          <%= f.label :website, "Website" %>
+          <%= f.hidden_field :parent, :value => @comment.parent %>
+          <%= f.text_field :website, placeholder: "Enter Website", id: 'website' %>
+        <%= f.submit "Post", class: "btn btn-primary", id: 'submit-button' %>
+      <% end %>
+      <button type="button" id="cancel-form">CANCEL REPLY</button>
+      </div>
+      
       <br class="clear" />
       <% end %>
 </div>
