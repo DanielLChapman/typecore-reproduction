@@ -226,19 +226,26 @@
           <script>
             $(document).ready(function() {
               $(".comment-content h6").on("click", function() {
-                var htmlForm = "<div id='comment-form'>" + $("#comment-form").html() + "</div>";
-                $("#comment-form").remove();
-                $(this).append(htmlForm);
-                $("#comment-form").addClass("active-form");
+                $(this).append($(".new_comment"));
+                $("#comment-container > .new_comment").remove();
+                $(".new_comment").addClass("active-form");
                 $("#cancel-form").animate({ right: "30px" }, 500);
-                $("#comment_parent").val($(this).parent().attr("value"));
+                if ($(this).parent().attr("level") == 3) {
+                  
+                  $("#comment_parent").val($(this).parent().attr("parentval"));
+                }
+                else {
+                  $("#comment_parent").val($(this).parent().attr("value"));
+                }
               });
               $(document).on('click', '#cancel-form', function() {
-                var htmlForm = "<div id='comment-form'>" + $("#comment-form").html() + "</div>";
-                $("#comment-form").remove();
-                $(".middle-comments").parent().append(htmlForm);
+                $("#comment-container").append($(".new_comment"));
+                $('.new_comment').removeClass("active-form")
+                $(".comment-content > .new_comment").remove();
+    
                 $("#cancel-form").animate({ right: "-300px" }, 500);
                 $("#comment_parent").val('-1');
+                updateFunction();
               });
             });
           </script>
@@ -254,102 +261,51 @@
               <% end %>
             <% end %>
               <ul>
-                <li>
-                  <div value="1" class="comment-content" id="comment-1">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/>
-                    <br/>
-Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                    <br/>
-                    <h6>Reply</h6>
-                  </div>
-                </li>
-                <ul>
-                  <li><div value="2" class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/>
-                        </p><br/>
-                    <h6>Reply</h6>
-                  </div></li>
-                  <ul>
-                    <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/>
-                    <br/>
-Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p><br/>
-                    <h6>Reply</h6>
-                  </div></li>
-                    <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/>
-                    <br/>
-Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                      <br/>
-Quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p><br/>
-                    <h6>Reply</h6>
-                      
-                  </div></li>
-                    
-                  </ul>
-                </ul>
-                <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/>
-                        </p><br/>
-                    <h6>Reply</h6>
-                  
-                  </div></li>
-                <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-                        </p><br/>
-                    <h6>Reply</h6>
-                  
-                  </div></li>
-                <ul>
-                  <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-                        </p><br/>
-                    <h6>Reply</h6>
-                  </div></li>
-                  <li><div class="comment-content">
-                    <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span>Sarah</span> October 31, 2013 at 9:14 am
-</h5><p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-<br/> Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem.
-                        </p><br/>
-                    <h6>Reply</h6>
-                  </div></li>
-                  
-                </ul>
-              </ul>
+                <% if (@a.exists?) %>
+                  <% for i in 0...@comment_items.length %>
+                    <% @level = 1 %>
+                    <% if (@comment_items[i] === "child") %>
+                      <% @level += 1 %>
+                      <ul>
+                    <% else if (@comment_items[i] =="done" ) %>
+                      <% @level -= 1 %>
+                      <% if (@level < 1)  %>
+                        <% @level = 1 %>
+                      <% end %>
+                      </ul>
+                    <% else %>
+                      <li>
+                        <div value="<%= @comment_items[i].id %>" parentval="<%= @comment_items[i].parent %>" level="<%= @level %>" class="comment-content" id="comment-<%= @comment_items[i].id %>">
+                          <img src="http://2.gravatar.com/avatar/b61ef4c40dc381f00c4e9f9dd856de71?s=192&d=mm&r=g"><h5><span><%= @comment_items[i].name %></span> <%= @comment_items[i].created_at.to_s(format = :long) %>
+                          </h5><p><%= @comment_items[i].content.html_safe %>
+                          <br/>
+                          <h6>Reply</h6>
+                        </div>
+                      </li>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
             </div>
         </div>
       </div>
-      <div id="comment-form">
-      <%= form_for @comment, :url => comments_path(:id => @impess), method: "post" do |f| %>
-        
-          <%= f.label :content, "Comment" %>
-          <%= f.text_area :content, placeholder: "Compose new comment", id: 'fname' %>
-          
-          <%= f.label :name, "Name" %>
-          <%= f.label :email, "Email" %>
-          <%= f.text_field :name, placeholder: "", id: 'lname' %>
-          <%= f.text_field :email, placeholder: "", id: 'email' %>
-          
-          <%= f.label :website, "Website" %>
-          <%= f.hidden_field :parent, :value => @comment.parent %>
-          <%= f.text_field :website, placeholder: "Enter Website", id: 'website' %>
-        <%= f.submit "Post", class: "btn btn-primary", id: 'submit-button' %>
-      <% end %>
-      <button type="button" id="cancel-form">CANCEL REPLY</button>
+      <div id="comment-container">
+            <%= form_for @comment, :url => comments_path(:id => @impess), method: "post" do |f| %>
+            
+              <%= f.label :content, "Comment" %>
+              <%= f.text_area :content, placeholder: "Compose new comment", id: 'fname' %>
+              
+              <%= f.label :name, "Name" %>
+              <%= f.label :email, "Email" %>
+              <%= f.text_field :name, placeholder: "", id: 'lname' %>
+              <%= f.text_field :email, placeholder: "", id: 'email' %>
+              
+              <%= f.label :website, "Website" %>
+              <%= f.hidden_field :parent, :value => @comment.parent %>
+              <%= f.text_field :website, placeholder: "Enter Website", id: 'website' %>
+            <%= f.submit "Post", class: "btn btn-primary", id: 'submit-button' %>
+            <button type="button" id="cancel-form">CANCEL REPLY</button>
+            <% end %>
       </div>
       
       <br class="clear" />

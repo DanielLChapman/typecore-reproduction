@@ -69,7 +69,35 @@ class MainPagesController < ApplicationController
           puts "huh?"
         end
       end
+      
+      #comments
+      @a = Comment.where("article_id=?", @impess).where("parent=?", "-1")
+      @comment_items = Array.new
+      if (@a.exists?)
+        @a.each do |p| 
+          @comment_items.push(p)
+          @b = Comment.where("parent=?", p.id)
+          if (@b.exists?)
+            @comment_items.push("child")
+            @b.each do |q|
+              @comment_items.push(q)
+              @c = Comment.where("parent=?", q.id)
+              if (@c.exists?)
+                @comment_items.push("child")
+                @c.each do |w| 
+                  @comment_items.push(w)  
+                end
+                @comment_items.push("done")
+              end
+            end
+             @comment_items.push("done")
+          end
+        end
+         @comment_items.push("done")
+        
+      end
     end
+    
   end
   
   
