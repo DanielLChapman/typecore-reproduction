@@ -171,11 +171,14 @@ $(document).ready(function() {
 </script>
 
 <div id="middle-content">
-  <section id="article-author" style="margin-bottom: 100px;">
-            <img src="http://2.gravatar.com/avatar/bc8f699696b5d79ac8c0b66cb83b82be?s=128&d=mm&r=g">
-            <h4><%= @art_full[0].user.name %></h4>
-            <p><%= @art_full[0].user.description %></p>
-          </section>
+  
+  <div id="middle-content-title" style="margin-bottom: 100px">
+    <% if (@art_full.length > 0) %>
+          <h3><span style="color: rgb(46,46,46);">Featured.</span> <%= @art_full[0].category %></h3>
+          <% else %>
+          <h3><span style="color: rgb(46,46,46);">Featured.</span> Whats new?</h3>
+    <% end %>
+  </div>
   <div id="middle-end-articles">
   <div id="scroll-container">
               <ul>

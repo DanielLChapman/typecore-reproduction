@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'author'    => 'main_pages#author'
   get 'article'   => 'main_pages#article'
   get 'console'   => 'main_pages#console'
+  get 'category'  => 'main_pages#category'
   post 'featured'  => 'articles#featured'
   post 'admin'  => 'users#admin'
   post 'author'  => 'users#author'

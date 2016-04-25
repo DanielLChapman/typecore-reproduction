@@ -38,6 +38,14 @@ class MainPagesController < ApplicationController
   end
 
   def author
+    @impess = params[:query]
+    
+    if (!Article.exists?(@impess))
+      @impess = Article.last.user_id
+    end
+    if (!@impess.nil?)
+      @art_full = Article.where("user_id=?", @impess)
+    end
   end
 
   def article
@@ -108,6 +116,16 @@ class MainPagesController < ApplicationController
     @user_list = User.all
   end
   
+  def category 
+     @impess = params[:query]
+     
+    if (!Article.where("category=?", @impess).exists?)
+      @impess = Article.category
+    end
+    if (!@impess.nil?)
+      @art_full = Article.where("category=?", @impess)
+    end
+  end
   
   private 
     def logged_in_user
