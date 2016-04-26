@@ -286,18 +286,33 @@ $(document).ready(function() {
           <div id="middle-end-feature">
             <div>
               <h5>Recent Posts</h5>
-                <ul>
+              <ul>
+              <% if (@art_full.length > 3) %>
+                <% @rec_art = @art_full[-3..-1] %>
+                  <% @rec_art.each do |t| %>
+                    <li><a href="article?query=<%= t.id %>"><i class="fa fa-circle-o"></i> <%= t.tag %></a></li>
+                  <% end %>
+                <% else %>
                   <li><a href="article"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</a></li>
                   <li><a href="article"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton Maryton Ashton</a></li>
                   <li><a href="article"><i class="fa fa-circle-o"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                <% end %>
                 </ul> 
             </div>
             <div>
               <h5>Recent Comments</h5>
-                <ul>
-                  <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
-                  <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
-                  <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+              <ul>
+                <% if (@latest_comment.length > 3) %>
+                  <% @rec_com = @latest_comment[0..2] %>
+                    <% @rec_com.each do |t| %>
+                      <li><a href="article?query=<%= t.article_id %>"><i class="fa fa-circle-o"></i> <%= t.content %></a></li>
+                    <% end %>
+                  <% else %>
+                      
+                    <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                    <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                    <li><a href="article"><i class="fa fa-comment"></i> Road Bike Part 2 with Martyn Ashton</a></li>
+                  <% end %>
                 </ul> 
             </div>
             <br class="clear" />

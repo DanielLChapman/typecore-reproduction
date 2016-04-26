@@ -126,42 +126,56 @@
             
           </ul>
           <ul class="comment">
-            <li>
-              <a href="article.html">
-                <div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g">
-                  <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
-                  <h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
-                </div>
-              </a>
-            </li>
-            <br class="clear" />
-            <li>
-              <a href="article.html">
-                <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg">
-                  <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
-                  <h5 style="font-weight: 300;">You really went all crazy out there</h5>
-                </div>
-              </a>
-            </li>
-            <br class="clear" />
-            <li>
-              <a href="article.html">
-                <div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g">
-                  <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
-                  <h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
-                </div>
-              </a>
-            </li>
-            <br class="clear" />
-            <li>
-              <a href="article.html">
-                <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg">
-                  <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
-                  <h5 style="font-weight: 300;">You really went all crazy out there</h5>
-                </div>
-              </a>
-            </li>
-            <br class="clear" />
+            <% if (@latest_comment.length > 0) %>
+              <% @latest_comment.each do |p| %>
+                <li>
+                  <a href="article?query=<%= p.article_id %>">
+                    <div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g">
+                      <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;"><%= p.name %></span></h4>
+                      <h5 style="font-weight: 300;"><%= p.content %></h5>
+                    </div>
+                  </a>
+                </li>
+                <br class="clear" />
+              <% end %>
+            <% else %>
+              <li>
+                <a href="article.html">
+                  <div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g">
+                    <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
+                    <h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
+                  </div>
+                </a>
+              </li>
+              <br class="clear" />
+              <li>
+                <a href="article.html">
+                  <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg">
+                    <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
+                    <h5 style="font-weight: 300;">You really went all crazy out there</h5>
+                  </div>
+                </a>
+              </li>
+              <br class="clear" />
+              <li>
+                <a href="article.html">
+                  <div><img src="http://2.gravatar.com/avatar/898c52f8de33246d15b4264d2e2ef7cf?s=192&d=mm&r=g">
+                    <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
+                    <h5 style="font-weight: 300;">Road Bike Party 2 with Martyn Ashton</h5>
+                  </div>
+                </a>
+              </li>
+              <br class="clear" />
+              <li>
+                <a href="article.html">
+                  <div><img src="http://demo.alxmedia.se/typecore/wp-content/uploads/sites/9/2013/10/2e9b0cb2-320x320.jpg">
+                    <h4><span style="color: lightslategray; text-transform: uppercase; font-size: 12px;">Alexander Says</span></h4>
+                    <h5 style="font-weight: 300;">You really went all crazy out there</h5>
+                  </div>
+                </a>
+              </li>
+              <br class="clear" />
+            <% end %>
           </ul>
         </div>
         <br class="clear" />

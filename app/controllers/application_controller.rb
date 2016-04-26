@@ -7,7 +7,12 @@ class ApplicationController < ActionController::Base
   before_filter :get_current_art
   before_filter :get_most_art
   before_filter :end_categories
+  before_filter :get_latest_comments
   
+  
+  def get_latest_comments
+    @latest_comment = Comment.last(4)
+  end
 
   def get_current_art
     @current_art = Article.limit(5).order('id desc')
